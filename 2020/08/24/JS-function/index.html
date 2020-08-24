@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"parksaneon.github.io","root":"/","scheme":"Muse","version":"8.0.0-rc.5","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false};
+  </script>
+
+  <meta name="description" content="함수자바스크립트의 핵심 개념인 스코프, 실행 컨텍스트, 클로저, 생성자 함수에 의한 객체 생성, 메서드, this, 프로토타입, 모듈화 등이 모두 함수와 깊은 관련이 있다.  수학에서의 함수는 입력(input) 받은 것을 출력(output)한다는 의미 프로그래밍 에서의 함수는 일련의 과정을 문으로 구현한 다음 이를 코드블럭으로 감싼 하나의 실행 단위이다.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS function">
+<meta property="og:url" content="http://parksaneon.github.io/2020/08/24/JS-function/index.html">
+<meta property="og:site_name" content="Park facamp&#39;s blog">
+<meta property="og:description" content="함수자바스크립트의 핵심 개념인 스코프, 실행 컨텍스트, 클로저, 생성자 함수에 의한 객체 생성, 메서드, this, 프로토타입, 모듈화 등이 모두 함수와 깊은 관련이 있다.  수학에서의 함수는 입력(input) 받은 것을 출력(output)한다는 의미 프로그래밍 에서의 함수는 일련의 과정을 문으로 구현한 다음 이를 코드블럭으로 감싼 하나의 실행 단위이다.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://poiemaweb.com/assets/fs-images/12-2.png">
+<meta property="og:image" content="https://poiemaweb.com/assets/fs-images/12-7.png">
+<meta property="og:image" content="https://poiemaweb.com/assets/fs-images/12-9.png">
+<meta property="article:published_time" content="2020-08-24T11:11:13.000Z">
+<meta property="article:modified_time" content="2020-08-24T11:11:49.446Z">
+<meta property="article:author" content="Park facamp">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://poiemaweb.com/assets/fs-images/12-2.png">
+
+
+<link rel="canonical" href="http://parksaneon.github.io/2020/08/24/JS-function/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>JS function | Park facamp's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Park facamp's blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%ED%95%A8%EC%88%98"><span class="nav-number">1.</span> <span class="nav-text">함수</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%82%AC%EC%9A%A9-%EC%9D%B4%EC%9C%A0"><span class="nav-number">1.0.1.</span> <span class="nav-text">사용 이유</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%ED%95%A8%EC%88%98-%EB%A6%AC%ED%84%B0%EB%9F%B4"><span class="nav-number">1.0.2.</span> <span class="nav-text">함수 리터럴</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%ED%95%A8%EC%88%98-%EC%A0%95%EC%9D%98"><span class="nav-number">1.0.3.</span> <span class="nav-text">함수 정의</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%ED%95%A8%EC%88%98-%EC%84%A0%EC%96%B8%EB%AC%B8"><span class="nav-number">1.0.4.</span> <span class="nav-text">함수 선언문</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%ED%95%A8%EC%88%98-%ED%91%9C%ED%98%84%EC%8B%9D"><span class="nav-number">1.0.5.</span> <span class="nav-text">함수 표현식</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%ED%95%A8%EC%88%98-%EC%83%9D%EC%84%B1-%EC%8B%9C%EC%A0%90%EA%B3%BC-%ED%95%A8%EC%88%98-%ED%98%B8%EC%9D%B4%EC%8A%A4%ED%8C%85"><span class="nav-number">1.0.6.</span> <span class="nav-text">함수 생성 시점과 함수 호이스팅</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fuction-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98"><span class="nav-number">1.0.7.</span> <span class="nav-text">Fuction 생성자 함수</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%ED%99%94%EC%82%B4%ED%91%9C-%ED%95%A8%EC%88%98"><span class="nav-number">1.0.8.</span> <span class="nav-text">화살표 함수</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%ED%95%A8%EC%88%98%ED%98%B8%EC%B6%9C"><span class="nav-number">1.1.</span> <span class="nav-text">함수호출</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%B0%98%ED%99%98%EB%AC%B8"><span class="nav-number">1.1.1.</span> <span class="nav-text">반환문</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%A6%89%EC%8B%9C-%EC%8B%A4%ED%96%89%ED%95%A8%EC%88%98"><span class="nav-number">1.1.2.</span> <span class="nav-text">즉시 실행함수</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%9E%AC%EA%B7%80%ED%95%A8%EC%88%98"><span class="nav-number">1.1.3.</span> <span class="nav-text">재귀함수</span></a></li></ol></li></ol></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Park facamp</p>
+  <div class="site-description" itemprop="description">All Dev stories</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://parksaneon.github.io/2020/08/24/JS-function/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Park facamp">
+      <meta itemprop="description" content="All Dev stories">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Park facamp's blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JS function
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-08-24 20:11:13 / Modified: 20:11:49" itemprop="dateCreated datePublished" datetime="2020-08-24T20:11:13+09:00">2020-08-24</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="함수"><a href="#함수" class="headerlink" title="함수"></a>함수</h1><p>자바스크립트의 핵심 개념인 스코프, 실행 컨텍스트, 클로저, 생성자 함수에 의한 객체 생성, 메서드, this, 프로토타입, 모듈화 등이 모두 함수와 깊은 관련이 있다. </p>
+<p>수학에서의 함수는 입력(input) 받은 것을 출력(output)한다는 의미</p>
+<p>프로그래밍 에서의 <strong>함수는 일련의 과정을 문으로 구현한 다음 이를 코드블럭으로 감싼 하나의 실행 단위</strong>이다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// f(x, y) = x + y</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// f(2, 5) = 7</span></span><br><span class="line">add(<span class="number">2</span>, <span class="number">5</span>); <span class="comment">// 7</span></span><br></pre></td></tr></table></figure>
+
+<p>자바스크립트에서 함수는 객체로서 하나의 값으로 취급된다.</p>
+<p><img src="https://poiemaweb.com/assets/fs-images/12-2.png" alt="img"></p>
+<p>함수 이름은 하나의 식별자로서 메모리에 저장된 함수를 가르키는 역활을 한다.</p>
+<p>함수는 정의를 통해 만들어지지만 실행을 하려면 호출을 따로 해줘야 한다.</p>
+<h3 id="사용-이유"><a href="#사용-이유" class="headerlink" title="사용 이유"></a>사용 이유</h3><ol>
+<li><p>필요할 때 언제든지 실행할 수 있다. </p>
+<p>동일한 작업을 반복적으로 사용할 때 사용되며 이를 코드의 재사용성이라 한다. -&gt;  사용자가 작성한 코드가 동일하게 사용될 때 함수의 사용을 고려할 수 있다.</p>
+</li>
+<li><p>함수는 변수처럼 이름을 가질 수 있다.</p>
+<p>함수는 여러개의 문을 블록으로 감싼 하나의 실행단위라고 볼 수 있는데, 그 실행의 단위에 대한 이름을 지정하여, 해당 함수가 어떤 일을 하는 지를 쉽게 판별할수 있게 하는데 이를 코드의 가독성이라 한다.</p>
+</li>
+</ol>
+<h3 id="함수-리터럴"><a href="#함수-리터럴" class="headerlink" title="함수 리터럴"></a>함수 리터럴</h3><p>리터럴 : 함수를 생성하는 표기법</p>
+<p>자바스크립트의 함수는 객체타입의 값이다.  숫자값을 숫자 리터럴로 생성하는 것처럼 함수도 해당 리터럴로 생성할 수 있다. 함수 리터럴은 function키워드, 함수이름, 매개변수 목록, 함수 몸체 등 4가지로 나타낸다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 변수에 함수 리터럴을 할당</span></span><br><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>함수 이름은 식별자로서 네이밍 규칙을 준수해야 하는데 경우에 따라 생략할 수 있다.</p>
+<p>이름의 유무에 따라 기명함수(named function) / 익명함수(anonymous function) 라 불린다.</p>
+<p>리터럴이 실행되는 시점에 함수라는 하나의 객체를 생성한다. 함수자체가 값(객체)이므로 변수에 할당이 가능하다.</p>
+<p>위에 f라는 변수에는 함수가 저장된 메모리의 주소를 참조값으로 가진다.</p>
+<p>함수는 객체이지만 일반적인 객체와는 다르다. 일반객체와 달리 함수는 호출이 가능하고, </p>
+<h3 id="함수-정의"><a href="#함수-정의" class="headerlink" title="함수 정의"></a>함수 정의</h3><p>함수를 정의하는 방법은 4가지가 존재한다.</p>
+<ol>
+<li>함수 선언 : 함수 리터럴을 어디에도 할당하지 않고 정의만 내림</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x, y</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x + y</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="2">
+<li>함수 표현식 : 함수 리터럴을 변수에 할당</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> add = <span class="function"><span class="keyword">function</span> (<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="3">
+<li>Fuction 생성자 함수</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> add = <span class="keyword">new</span> Fuction()</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="4">
+<li>화살표 함수</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> add = <span class="function">(<span class="params">x, y</span>) =&gt;</span> x + y;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="함수-선언문"><a href="#함수-선언문" class="headerlink" title="함수 선언문"></a>함수 선언문</h3><p>함수 리터럴을 이용해 함수를 정의하고, 따로 변수에 함수를 할당하지 않는다. ( 함수 이름 생략 불가능 )</p>
+<p>함수 선언문은 표현식이 아닌 문이다.( 값으로 평가될 수 없다 )</p>
+<p>그런데 함수 선언문은 변수에 할당해도 정상적으로 동작하는 것으로 보여진다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> add = <span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 함수 호출</span></span><br><span class="line"><span class="built_in">console</span>.log(add(<span class="number">2</span>, <span class="number">5</span>)); <span class="comment">// 7</span></span><br></pre></td></tr></table></figure>
+
+<p>자바스크립트 엔진은 함수 선언문이 변수에 할당되지 않으면 함수 선언문으로 해석한다.</p>
+<p>반면에 변수에 할당하면, 함수 선언문에 이름이 존재해도 함수 선언문이 아닌, 함수 표현식으로 해석한다.</p>
+<p>원래 함수 식별자는 함수 코드블럭 내부에서만 참조가 가능하다. 그런데 외부에서도 함수 식별자를 통한 선언이 가능한 이유는 함수 선언문을 실행할 때, 암묵적으로 선언문의 함수 이름과 동일한 이름의 변수를 생성하고 해당 변수에 생성된 함수 객체를 할당하기 때문이다.</p>
+<p>결론적으로 함수를 실행할 때는 해당 함수 명이 아니라 해당 함수가 할당된 함수명과 동일한 변수를 통해 실행하는 것이다.</p>
+<p>-&gt; <strong>함수는 함수 이름이 아니라 함수 객체를 가르키는 식별자로 호출한다</strong></p>
+<p><img src="https://poiemaweb.com/assets/fs-images/12-7.png" alt="img"></p>
+<h3 id="함수-표현식"><a href="#함수-표현식" class="headerlink" title="함수 표현식"></a>함수 표현식</h3><p>함수 리터럴로 생성한 함수를 변수에 할당한다. </p>
+<p>함수 리터럴에서 함수 이름은 생략이 가능하다. (함수 선언문은 함수이름과 동일한 변수를 암묵적으로 생성해야 하기때문에 생략이 불가)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 함수 표현식</span></span><br><span class="line"><span class="keyword">var</span> add = <span class="function"><span class="keyword">function</span> (<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>함수는 일급객체로서 값처럼 자유롭게 사용이 가능하다. ( 변수에 할당하는 것도 가능 ) </p>
+<p>함수이름은 해당 함수 코드블럭내에서만 참조가 가능하다.</p>
+<p>엔진의 암묵적인 동일 변수생성이 없다면 외부에서 실행이 불가능하다. </p>
+<h3 id="함수-생성-시점과-함수-호이스팅"><a href="#함수-생성-시점과-함수-호이스팅" class="headerlink" title="함수 생성 시점과 함수 호이스팅"></a>함수 생성 시점과 함수 호이스팅</h3><p>함수 선언문은 선언문 이전에 함수를 실행하면 함수 호이스팅에 의해 정상적으로 동작하지만, 함수 표현식은 이전에 실행시 변수 호이스팅이 일어나 동작하지 않는다.</p>
+<p>함수 선언문은 자바스크립트 런타임(위에서 아래로 순차적 실행)이 아닌 런타임이전에 먼저 선언문을 실행한다. ( 변수 선언문도 마찬가지 )</p>
+<p>즉 함수 선언문은 런타임 이전에 실행되어 함수 객체가 미리 생성된다. 반면 함수 표현식은 런타임에 의해 해당 줄이 실행될 때 변수에 할당된다.</p>
+<h3 id="Fuction-생성자-함수"><a href="#Fuction-생성자-함수" class="headerlink" title="Fuction 생성자 함수"></a>Fuction 생성자 함수</h3><p>생성자 함수란 객체를 생성하는 함수를 말한다.</p>
+<p>함수또한 객체이므로 생성자 함수를 통해서 생성된다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> add = <span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">&#x27;x&#x27;</span>, <span class="string">&#x27;y&#x27;</span>, <span class="string">&#x27;return x + y&#x27;</span>); <span class="comment">// 매개변수1, 매개변수2, 함수 몸체</span></span><br></pre></td></tr></table></figure>
+
+<p>일반적으로 권장되는 방법은 아니다.</p>
+<h3 id="화살표-함수"><a href="#화살표-함수" class="headerlink" title="화살표 함수"></a>화살표 함수</h3><p>function이라는 키워드 대신 화살표 =&gt; 를 사용해 함수를 선언한다. 화살표 함수는 항상 익명함수로 정의한다.</p>
+<h2 id="함수호출"><a href="#함수호출" class="headerlink" title="함수호출"></a>함수호출</h2><p>함수 객체를 가르키는 식별자와 한 쌍의 소괄호인 함수 호출 연산자로 실행한다. 소괄호 안에는 0개 이상의 매개변수가 들어간다. 함수가 호출되면 기존 실행 흐름을 중단하고 호출된 함수로 컨트롤이 옮겨진다.</p>
+<p>매개변수는 순서대로 할당된다.</p>
+<p><img src="https://poiemaweb.com/assets/fs-images/12-9.png" alt="img">함수외부에서 내부로 필요한 값을 전달할 경우는 매개변수를 통해 인수를 전달한다.</p>
+<p>인수는 값이어야 하고 타입에는 제한이 없다.</p>
+<p>일반적으로 변수는 변수 키워드와 같이 선언하고 런타임 이전에 실행되지만, 매개변수는 함수가 호출된 직후에 실행된다. 이때 초기에는 undefined로 초기화 되었다가 인수 전달을 통해 해당 값을 할당받는다.</p>
+<p>자바스크립트는 매개변수와 인수의 수를 체크하지 않는다. 정의된 매개변수보다 인수의 수가 작을 경우엔 나머지 매개변수는 undefined로 유지되며, 더 큰 경우에는 무시되고 그 값들은 arguments 객체에 보관된다.</p>
+<p>매개변수는 가능하면 최대 3개 이상을 넘지 않도록 하며, 불가피하게 인수를 많이 전달해야 하는 경우에는 객체나 배열을 이용하여 많은 값을 한 인수에 포함하도록 한다.</p>
+<h3 id="반환문"><a href="#반환문" class="headerlink" title="반환문"></a>반환문</h3><p>함수는 반환 키워드 return과 반환값으로 이뤄진 반환문을 통해 실행 결과를 함수 외부로 반환한다.</p>
+<p>return 키워드는 함수 외부로 값을 반환하는 것 외에도 함수 실행을 종료하는 기능도 가진다. 반환문 이후에 등장하는 문들은 아무 의미가 없는 문이다. </p>
+<p>return을 생략하거나 반환값을 지정하지 않으면 암묵적으로 undefined를 반환한다.</p>
+<h3 id="즉시-실행함수"><a href="#즉시-실행함수" class="headerlink" title="즉시 실행함수"></a>즉시 실행함수</h3><p>함수의 정의와 동시에 즉시 호출되는 함수로서 단 한번만 호출되고, 다시 호출할수 없다. 다시 호출이 불가능하므로 함수 이름 생략이 가능하여 익명함수로 사용한다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="number">3</span>;</span><br><span class="line">  <span class="keyword">var</span> b = <span class="number">5</span>;</span><br><span class="line">  <span class="keyword">return</span> a * b;</span><br><span class="line">&#125;());</span><br></pre></td></tr></table></figure>
+
+<p>즉시 실행 함수는 반드시 그룹 연사자 () 감싸 줘야 줘야 한다.</p>
+<p>그룹 연산자 내부의 함수 리터럴은 함수 표현식으로 동작한다 ( 선언문 x )</p>
+<p>그룹 연산자 내부의 함수 표현식은 함수 리터럴로 평가되어 객체가 된다. 객체가 생성됨과 동시에 () 키워드로 함수가 실행된다.  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;());</span><br><span class="line"></span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line">!<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;();</span><br><span class="line"></span><br><span class="line">+<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;();</span><br></pre></td></tr></table></figure>
+
+<p>함수 호출 키워드 소괄호()는 그룹연산자의 외부/내부 어느곳에 위치해도 정상동작 한다.</p>
+<p>인수를 전달할 때는 함수 호출 키워드 소괄호() 내부에 작성하면 된다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 즉시 실행 함수에도 일반 함수처럼 인수를 전달할 수 있다.</span></span><br><span class="line">res = (<span class="function"><span class="keyword">function</span> (<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a * b;</span><br><span class="line">&#125;(<span class="number">3</span>, <span class="number">5</span>));</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(res); <span class="comment">// 15</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="재귀함수"><a href="#재귀함수" class="headerlink" title="재귀함수"></a>재귀함수</h3><p>함수는 자기 자신을 호출할 수 있는데 이를 재귀함수라고 부른다.</p>
+<p>자기 자신을 호출하는 행위이며 재귀 호출을 통해 반복 연산을 구현할 수 있다.</p>
+<p>재귀함수는 그냥 사용하면 무한하게 자신을 호출하므로 어느시점에서는 자기 호출을 중단하도록 탈출 조건을 걸어줘야 한다. ( stack overflow 오류 발생 방지 )</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/08/24/position-minus-margin/" rel="prev" title="position & minus margin">
+                  <i class="fa fa-chevron-left"></i> position & minus margin
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Park facamp</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+      
+
+
+
+
+
+
+
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
