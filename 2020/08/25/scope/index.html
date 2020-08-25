@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"parksaneon.github.io","root":"/","scheme":"Muse","version":"8.0.0-rc.5","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false};
+  </script>
+
+  <meta name="description" content="Scope함수 내부에서 선언된 변수는 내부에서만 참조가 가능하고 외부에서는 사용이 불가능하다. 반면에 외부에서 선언된 변수는 함수 내부에서도 사용이 가능한데 이것은 함수 내부와 외부에 각각 선언된 변수의 유효범위(스코프)가 다르기 때문이다.  모든 식별자(변수 이름, 함수 이름, 클래스 이름 등)는 자신이 선언된 위치에 의해 다른 코드가 식별자 자신을 참조">
+<meta property="og:type" content="article">
+<meta property="og:title" content="scope">
+<meta property="og:url" content="http://parksaneon.github.io/2020/08/25/scope/index.html">
+<meta property="og:site_name" content="Park facamp&#39;s blog">
+<meta property="og:description" content="Scope함수 내부에서 선언된 변수는 내부에서만 참조가 가능하고 외부에서는 사용이 불가능하다. 반면에 외부에서 선언된 변수는 함수 내부에서도 사용이 가능한데 이것은 함수 내부와 외부에 각각 선언된 변수의 유효범위(스코프)가 다르기 때문이다.  모든 식별자(변수 이름, 함수 이름, 클래스 이름 등)는 자신이 선언된 위치에 의해 다른 코드가 식별자 자신을 참조">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-08-25T06:55:32.000Z">
+<meta property="article:modified_time" content="2020-08-25T06:57:07.597Z">
+<meta property="article:author" content="Park facamp">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://parksaneon.github.io/2020/08/25/scope/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>scope | Park facamp's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Park facamp's blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Scope"><span class="nav-number">1.</span> <span class="nav-text">Scope</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%8A%A4%EC%BD%94%ED%94%84%EC%9D%98-%EC%A2%85%EB%A5%98"><span class="nav-number">1.1.</span> <span class="nav-text">스코프의 종류</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%A7%80%EC%97%AD%EB%B3%80%EC%88%98"><span class="nav-number">1.1.1.</span> <span class="nav-text">지역변수</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%8A%A4%EC%BD%94%ED%94%84-%EC%B2%B4%EC%9D%B8"><span class="nav-number">1.2.</span> <span class="nav-text">스코프 체인</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%ED%95%A8%EC%88%98-%EB%A0%88%EB%B2%A8-%EC%8A%A4%EC%BD%94%ED%94%84"><span class="nav-number">1.2.1.</span> <span class="nav-text">함수 레벨 스코프</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%A0%89%EC%8B%9C%EC%BB%AC-%EC%8A%A4%EC%BD%94%ED%94%84"><span class="nav-number">1.2.2.</span> <span class="nav-text">렉시컬 스코프</span></a></li></ol></li></ol></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Park facamp</p>
+  <div class="site-description" itemprop="description">All Dev stories</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://parksaneon.github.io/2020/08/25/scope/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Park facamp">
+      <meta itemprop="description" content="All Dev stories">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Park facamp's blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          scope
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-08-25 15:55:32 / Modified: 15:57:07" itemprop="dateCreated datePublished" datetime="2020-08-25T15:55:32+09:00">2020-08-25</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="Scope"><a href="#Scope" class="headerlink" title="Scope"></a>Scope</h1><p>함수 내부에서 선언된 변수는 내부에서만 참조가 가능하고 외부에서는 사용이 불가능하다. 반면에 외부에서 선언된 변수는 함수 내부에서도 사용이 가능한데 이것은 함수 내부와 외부에 각각 선언된 변수의 유효범위(스코프)가 다르기 때문이다.</p>
+<p> <strong>모든 식별자(변수 이름, 함수 이름, 클래스 이름 등)는 자신이 선언된 위치에 의해 다른 코드가 식별자 자신을 참조할 수 있는 유효 범위가 결정된다. 이를 스코프라 한다. 즉, 스코프는 식별자가 유효한 범위를 말한다.</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="string">&#x27;global&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> x = <span class="string">&#x27;local&#x27;</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(x); <span class="comment">// ①</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo();</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(x); <span class="comment">// ②</span></span><br></pre></td></tr></table></figure>
+
+<p>위의 예제를 보면 전역변수 x와 foo함수 내부의 변수x가 존재한다.</p>
+<p>자바스크립트 엔진은 스코프를 통해 어떤 변수를 참조할 지 결정하는데 <strong>코드가 어디서 실행되며 주변에 어떤 코드가 있는지</strong>를 의미하는 렉시컬 환경을 고려한다.</p>
+<p>우선 전역변수 x는 어디서든 참조가 가능하지만, foo함수 내부변수 x는 foo함수 내에서만 사용이 가능하다.</p>
+<p>두 개의 x 변수는 식별자 이름이 동일하지만 자신이 유효한 범위, 즉 스코프가 다른 별개의 변수다.</p>
+<p>만약에 스코프라는 개념이 없다면 위의 x는 동일한 변수로 동작하여, 하나는 이름이 같다는 에러가 발생할 것이다.</p>
+<p>그래서 스코프(유효 범위)를 통해 식별자인 변수 이름의 충돌을 방지하여 같은 이름의 변수를 사용할 수 있게 한다. 스코프 내에서 식별자는 유일해야 하지만 다른 스코프에는 같은 이름의 식별자를 사용할 수 있다. 즉, 스코프는 네임스페이스(변수 이름을 담은 공간)다.</p>
+<h2 id="스코프의-종류"><a href="#스코프의-종류" class="headerlink" title="스코프의 종류"></a>스코프의 종류</h2><ul>
+<li><p>전역</p>
+<p>코드의 가장 바깥족(외부) 공간이며 존재하며 전역 변수를 가진다.</p>
+</li>
+<li><p>지역</p>
+<p>함수 몸체 내부 공간이며 지역 변수를 가진다.</p>
+</li>
+</ul>
+<p>변수는 자신이 선언된 위치(전역 또는 지역)에 의해 자신이 유효한 범위인 스코프가 결정된다. 즉, 전역에서 선언된 변수는 전역 스코프를 갖는 전역 변수이고, 지역에서 선언된 변수는 지역 스코프를 갖는 지역 변수다.</p>
+<h3 id="지역변수"><a href="#지역변수" class="headerlink" title="지역변수"></a>지역변수</h3><p>지역변수는 자신이 선언된 지역과 하위 지역(중첩 함수)에서만 참조할 수 있다. 다시 말해, 지역 변수는 자신의 지역 스코프와 하위 지역 스코프에서 유효하다.</p>
+<h2 id="스코프-체인"><a href="#스코프-체인" class="headerlink" title="스코프 체인"></a>스코프 체인</h2><p>변수와 마찬가지로 함수도 전역에서 정의할 수도 있고 함수 몸체 내부에서 정의할 수도 있다. </p>
+<p>함수 몸체 내부에서 함수가 정의된 것을 ‘함수의 중첩’이라 한다. 그리고 함수 몸체 내부에서 정의한 함수를 <strong>중첩 함수</strong>, 중첩 함수를 포함하는 함수를 <strong>외부 함수</strong>라고 한다.</p>
+<p>모든 스코프는 하나의 계층적 구조로 연결되며, 모든 지역 스코프의 최상위 스코프는 전역 스코프이다. 그리고 가장 내부에 선언된 중첩 함수는 자신의 상위 함수부터 순차적으로 위로 거슬로 올라가 전역 스코프에 도달하는데 이 연결을 스코프 체인 이라고 한다.</p>
+<p>변수를 참조할 때 자바스크립트 엔진은 스코프 체인을 통해 변수를 참조하는 코드의 스코프에서 시작하여 상위 스코프 방향으로 이동하며 선언된 변수를 검색한다. 이를 통해 상위 스코프에서 선언한 변수를 하위 스코프에서도 참조할 수 있다.</p>
+<p>자바스크립트 엔진은 스코프 체인을 따라 변수를 참조하는 코드의 스코프에서 시작해서 상위 스코프 방향으로 이동하며 선언된 변수를 검색한다. <strong>그러나 절대 하위 스코프로 내려가면 식별자를 검색하는 일은 없다</strong>. </p>
+<p>이는 <strong>상위 스코프에서 유효한 변수는 하위 스코프에서 자유롭게 참조할 수 있지만 하위 스코프에서 유효한 변수를 상위 스코프에서 참조할 수 없다</strong>는 것을 의미한다.</p>
+<p>스코프는 변수뿐 아니라 함수에도 해당한다. 함수는 정의될 때 자바스크립트는 암묵적으로 함수이름과 동일한 변수를 생성하고 그 변수에 함수가 저장된 메모리 주소를 할당한다. 스코프를 “변수를 검색할 때 사용하는 규칙”이라고 표현하기 보다는 <strong>“식별자를 검색하는 규칙”</strong>이라고 표현하는 편이 좀 더 적합하다.</p>
+<h3 id="함수-레벨-스코프"><a href="#함수-레벨-스코프" class="headerlink" title="함수 레벨 스코프"></a>함수 레벨 스코프</h3><p>지역은 함수 몸체 내부를 말하고 지역은 지역 스코프를 만든다고 했다. 이는 <strong>코드 블록이 아닌 함수에 의해서만 지역 스코프가 생성된다</strong>는 의미이다.</p>
+<p>다른 프로그래밍 언어는 모든 코드블록(if, for, catch, while)등에서 지역 스코프(<strong>블록 레벨 스코프</strong>)를 만들지만 자바스크립트의 var 키워드 변수는 오직 함수의 코드블록만을 지역 스코프로 인정한다. 이래서 <strong>함수 레벨 스코프</strong>라고 부른다. </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> i = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// for 문에서 선언한 i는 전역 변수다. 이미 선언된 전역 변수 i가 있으므로 중복 선언된다.</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(i); <span class="comment">// 0 1 2 3 4</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 의도치 않게 변수의 값이 변경되었다.</span></span><br><span class="line"><span class="built_in">console</span>.log(i); <span class="comment">// 5</span></span><br></pre></td></tr></table></figure>
+
+<p>위의 사례처럼 i 변수는 for문에서만 사용하려고 만들어 졌지만, 기존 전역 변수 i와 변수명이 같아 이를 덮어쓴다.</p>
+<p>var 함수는 오직 함수 레벨 스코프만을 지역 스코프로 인정해서 이러한 현상이 생긴다.</p>
+<h3 id="렉시컬-스코프"><a href="#렉시컬-스코프" class="headerlink" title="렉시컬 스코프"></a>렉시컬 스코프</h3><p><strong>함수를 어디서 정의했는지</strong>에 따라 함수의 상위 스코프를 결정한다.</p>
+<p>위의 방식을 렉시컬 스코프 또는 정적 스코프라 한다. 함수의 정의가 평가되는 시점에 상위 스코프가 정적으로 결정되기 때문에 정적 스코프라고 부른다. 자바스크립트를 비롯한 대부분의 프로그래밍 언어는 렉시컬 스코프를 따른다.</p>
+<p>자바스크립트는 렉시컬 스코프를 따르므로 함수를 어디서 호출했는지가 아니라 <strong>함수를 어디서 정의했는지</strong>에 따라 상위 스코프를 결정한다. 함수가 호출된 위치는 상위 스코프 결정에 어떠한 영향도 주지 않는다. 즉, 함수의 상위 스코프는 언제나 자신이 정의된 스코프다.</p>
+<p>이처럼 함수의 상위 스코프는 함수 정의가 실행될 때 정적으로 결정된다. 함수 정의(함수 선언문 또는 함수 표현식)가 실행되어 생성된 함수 객체는 이렇게 결정된 상위 스코프를 기억한다. 함수가 호출될 때마다 함수의 상위 스코프를 참조할 필요가 있기 때문이다.</p>
+<p>*동적 스코프 : <strong>함수를 어디서 호출</strong>했는지에 따라 함수의 상위 스코프를 결정한다  </p>
+<p>  -&gt; 자바스크립트는 정적 스코프 방식을 따르므로 동적 스코프 방식으로 생각하지 말것 </p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/08/24/JS-function/" rel="prev" title="JS function">
+                  <i class="fa fa-chevron-left"></i> JS function
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/08/25/life-cycle/" rel="next" title="life-cycle">
+                  life-cycle <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Park facamp</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+      
+
+
+
+
+
+
+
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
