@@ -158,7 +158,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -190,6 +190,207 @@
       
 
       
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://parksaneon.github.io/2020/08/26/first-class-object/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Park facamp">
+      <meta itemprop="description" content="All Dev stories">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Park facamp's blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/26/first-class-object/" class="post-title-link" itemprop="url">first-class-object</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-08-26 20:11:44 / Modified: 20:14:09" itemprop="dateCreated datePublished" datetime="2020-08-26T20:11:44+09:00">2020-08-26</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="일급객체"><a href="#일급객체" class="headerlink" title="일급객체"></a>일급객체</h1><ul>
+<li>무명의 리터럴로 생성할 수 있다. 즉, 런타임에 생성이 가능하다.</li>
+<li>변수나 자료구조(객체, 배열 등)에 저장할 수 있다.</li>
+<li>함수의 매개변수에게 전달할 수 있다.</li>
+<li>함수의 반환값으로 사용할 수 있다.</li>
+</ul>
+<p>위의 조건을 만족하면 일급 객체라 하는데</p>
+<p>자바스크립트 함수 객체의 위의 조건을 모두 충족하므로 일극 객체라 할 수 있다.</p>
+<p>함수는 객체이나 일반 객체와는 차이가 있다.</p>
+<p>일반 객체는 호출할 수 없지만 <strong>함수 객체는 호출</strong>할 수 있다. 그리고 함수 객체는 일반 객체에는 없는 <strong>함수 고유의 프로퍼티</strong>를 소유한다.</p>
+<h3 id="arguments-프로퍼티"><a href="#arguments-프로퍼티" class="headerlink" title="arguments 프로퍼티"></a>arguments 프로퍼티</h3><p>함수 객체의 arguments 프로퍼티 값은 arguments 객체다. </p>
+<p>arguments 객체는 함수 호출 시 전달된 인수(argument)들의 정보를 담고 있는 순회 가능한 유사 배열 객체이며, 함수 내부에서 지역 변수처럼 사용된다.</p>
+<p>함수가 호출되면 함수 몸체 내에서 암묵적으로 매개변수가 선언되고 undefined로 초기화된 이후 인수가 할당된다.</p>
+<p>모든 인수는 암묵적으로 arguments 객체의 프로퍼티로 보관된다. </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> res = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// arguments 객체는 length 프로퍼티가 있는 유사 배열 객체이므로 for 문으로 순회할 수 있다.</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="built_in">arguments</span>.length; i++) &#123;</span><br><span class="line">    res += <span class="built_in">arguments</span>[i];</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(sum());        <span class="comment">// 0</span></span><br><span class="line"><span class="built_in">console</span>.log(sum(<span class="number">1</span>, <span class="number">2</span>));    <span class="comment">// 3</span></span><br><span class="line"><span class="built_in">console</span>.log(sum(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)); <span class="comment">// 6</span></span><br></pre></td></tr></table></figure>
+
+<p>유사 배열 객체는 배열이 아니므로 배열 메서드를 사용할 경우 에러가 발생한다.</p>
+<p>일반 객체처럼 사용하려면</p>
+<ul>
+<li><p>Function.prototype.call</p>
+</li>
+<li><p>Function.prototype.apply</p>
+</li>
+</ul>
+<p>등으로 유사 배열객체를 배열로 변환해 줘야 한다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="proto-접근자-프로퍼티"><a href="#proto-접근자-프로퍼티" class="headerlink" title="proto 접근자 프로퍼티"></a><strong>proto</strong> 접근자 프로퍼티</h2><p>모든 객체는 [[Prototype]]이라는 내부 슬롯을 갖는다. [[Prototype]] 내부 슬롯은 객체 지향 프로그래밍의 상속을 구현하는 프로토타입 객체를 가리킨다.</p>
+<p><strong>proto</strong> 는 [[Prototype]] 내부 슬롯이 가리키는 프로토타입 객체에 접근하기 위해 사용하는 접근자 프로퍼티다.</p>
+<h2 id="prototype-프로퍼티"><a href="#prototype-프로퍼티" class="headerlink" title="prototype 프로퍼티"></a>prototype 프로퍼티</h2><p>prototype 프로퍼티는 생성자 함수만이 소유하는 프로퍼티다. 일반 객체와 생성자 함수로 호출할 수 없는 함수에는 prototype 프로퍼티가 없다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 함수 객체는 prototype 프로퍼티를 소유한다.</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;).hasOwnProperty(<span class="string">&#x27;prototype&#x27;</span>); <span class="comment">// -&gt; true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 일반 객체는 prototype 프로퍼티를 소유하지 않는다.</span></span><br><span class="line">(&#123;&#125;).hasOwnProperty(<span class="string">&#x27;prototype&#x27;</span>); <span class="comment">// -&gt; false</span></span><br></pre></td></tr></table></figure>
+
+<p>prototype 프로퍼티는 함수가 객체를 생성하는 생성자 함수로 호출될 때 생성자 함수가 생성할 인스턴스의 프로토타입 객체를 가리킨다.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://parksaneon.github.io/2020/08/26/new-function/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Park facamp">
+      <meta itemprop="description" content="All Dev stories">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Park facamp's blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/26/new-function/" class="post-title-link" itemprop="url">new function</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-08-26 20:11:34 / Modified: 20:14:00" itemprop="dateCreated datePublished" datetime="2020-08-26T20:11:34+09:00">2020-08-26</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="생성자-함수"><a href="#생성자-함수" class="headerlink" title="생성자 함수"></a>생성자 함수</h1><p>생성자 함수 : new 연산자와 함께 호출하여 객체(인스턴스)를 생성하는 함수</p>
+<p>인스턴스 : 생성자 함수에 의해 생성된 객체</p>
+<p>객체는 객체 리터럴 {} 외에도 생성하는 방법이 몇가지 존재하는데 생성자 함수도 그중 하나이다.</p>
+<h3 id="Object-생성자-함수"><a href="#Object-생성자-함수" class="headerlink" title="Object 생성자 함수"></a>Object 생성자 함수</h3><p>new키워드와 Object 함수를 이용하여 객체를 생성하고 해당 객체에 사용을 원하는 프로퍼티 추가</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 객체 생성</span></span><br><span class="line"><span class="keyword">const</span> person = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 프로퍼티 추가</span></span><br><span class="line">person.name = <span class="string">&#x27;Lee&#x27;</span>;</span><br><span class="line">person.sayHello = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;Hi! My name is &#x27;</span> + <span class="built_in">this</span>.name);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>위의 방식 보다는 객체 리터럴{}를 사용해서 생성하는 것이 더 간결해 보인다. </p>
+<h3 id="생성자-함수-1"><a href="#생성자-함수-1" class="headerlink" title="생성자 함수"></a>생성자 함수</h3><p>객체 리터럴은 간편하지만, 단 하나의 객체만을 생성한다. 혹시 여러 프로퍼티를 지닌 동일한 형태의 객체를 여러개 생성하는 경우에 객체 리터럴은 그다지 좋은 방법은 아니다.</p>
+<p>객체의 각 프로퍼티 값은 달라질 수 있으나 그 안의 메소드는 동작하는 방식이 같으므로 같은 것을 여러개 작성하는 것은 비효율 적이다.</p>
+<p>생성자 함수에 의한 객체 생성 방식은 마치 객체(인스턴스)를 생성하기 위한 하나의 템플릿처럼 생성자 함수를 사용하여 프로퍼티 구조가 동일한 객체 여러 개를 간편하게 생성할 수 있다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 생성자 함수</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Circle</span>(<span class="params">radius</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 생성자 함수 내부의 this는 생성자 함수가 생성할 인스턴스를 가리킨다.</span></span><br><span class="line">  <span class="built_in">this</span>.radius = radius;</span><br><span class="line">  <span class="built_in">this</span>.getDiameter = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span> * <span class="built_in">this</span>.radius;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 인스턴스의 생성</span></span><br><span class="line"><span class="keyword">const</span> circle1 = <span class="keyword">new</span> Circle(<span class="number">5</span>);  <span class="comment">// 반지름이 5인 Circle 객체를 생성</span></span><br><span class="line"><span class="keyword">const</span> circle2 = <span class="keyword">new</span> Circle(<span class="number">10</span>); <span class="comment">// 반지름이 10인 Circle 객체를 생성</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(circle1.getDiameter()); <span class="comment">// 10</span></span><br><span class="line"><span class="built_in">console</span>.log(circle2.getDiameter()); <span class="comment">// 20</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="this"><a href="#this" class="headerlink" title="this"></a>this</h4><p>자바스크립트의 스코프는 정적스코프 ( 렉시컬 스코프 ) - 함수가 정의된 환경에 따라 스코프가 결정됨   </p>
+<p>로 스코프를 결정한다.</p>
+<p>그러나 this는 해당 키워드를 사용하는 함수를 어떻게 사용하느냐에 따라 가르키는 값이 다르다.</p>
+<p>우선 this는 키워드인 객체라고 생각하자</p>
+<p>this는 함수 호출 방식에 따라 식별하는 객체가 다른데</p>
+<ul>
+<li>일반 호출</li>
+<li>메소드 내부 호출</li>
+<li>인스턴스 호출</li>
+</ul>
+<p>일반 함수로서 this를 호출하면 window객체를 가르킨다 ( 일부러 이렇게 하는 법은 없으므로 꼭 지양할 것 )</p>
+<p>일반 객체 내부에서 this를 호출하면 this는 객체를 가르킨다.</p>
+<p>생성자 함수 내부에서 this를 호출하면 this는 해당 생성자 함수가 생성하는 객체를 가르킨다.</p>
+<h2 id="생성자-함수-gt-인스턴스"><a href="#생성자-함수-gt-인스턴스" class="headerlink" title="생성자 함수 -&gt; 인스턴스"></a>생성자 함수 -&gt; 인스턴스</h2><p>암묵적으로 빈 객체가 생성된다. 이 빈 객체가 생성자 함수가 생성한 인스턴스다.</p>
+<p>그리고 <strong>암묵적으로</strong> <strong>생성된 빈 객체, 즉 인스턴스는 this에 바인딩된다.</strong> 생성자 함수 내부의 this가 생성자 함수가 생성할 인스턴스를 가리키는 이유가 바로 이것이다. 이 처리는 함수 몸체의 코드가 한 줄씩 실행되는 <strong>런타임 이전에 실행된다.</strong></p>
+<p>런타임 이전에 빈객체가 만들어지고 this에 이 빈객체가 바인딩된 다음에는</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Circle</span>(<span class="params">radius</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 암묵적으로 인스턴스가 생성되고 this에 바인딩된다.</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">//this에 바인딩되어 있는 인스턴스를 초기화한다.</span></span><br><span class="line">  <span class="built_in">this</span>.radius = radius;</span><br><span class="line">  <span class="built_in">this</span>.getDiameter = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span> * <span class="built_in">this</span>.radius;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>위의 처럼 빈 객체의 프로퍼티를 정의한다.</p>
+<p>생성자 함수는 암묵적으로 생성된 빈객체가 바인딩된 this가 암묵적으로 반환된다.</p>
+<p>만약에 명시적으로 원시값을 반환하면 그 반환은 무시되고 this가 반환된다.</p>
+<h3 id="Call-Construct"><a href="#Call-Construct" class="headerlink" title="Call / Construct"></a>Call / Construct</h3><p>함수 선언문 또는 함수 표현식으로 정의한 함수는 일반적인 함수로서 호출할 수 있는 것은 물론 생성자 함수로서 호출할 수 있다. </p>
+<p>생성자 함수로서 호출한다는 것은 new 연산자와 함께 호출하여 객체를 생성하는 것을 의미한다.</p>
+<p>함수는 객체이므로 일반 객체와 마찬가지로 내부 슬록, 내부 메서드를 가진다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 함수는 객체이므로 프로퍼티를 소유할 수 있다.</span></span><br><span class="line">foo.prop = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 함수는 객체이므로 메서드를 소유할 수 있다.</span></span><br><span class="line">foo.method = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">this</span>.prop);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>일반 객체와 달리 함수는 호출할 수도 있다.</p>
+<p>함수 객체는 일반 객체가 가지고 있는 내부 슬롯과 내부 메서드는 물론, 함수로서 동작하기 위해 함수 객체만을 위한 [[[Environment]], [[FormalParameters]] 등의 내부 슬롯과 [[Call]], [[Construct]] 같은 내부 메서드를 추가로 가지고 있다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 일반적인 함수로서 호출: [[Call]]이 호출된다.</span></span><br><span class="line">foo();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 생성자 함수로서 호출: [[Construct]]가 호출된다.</span></span><br><span class="line"><span class="keyword">new</span> foo();</span><br></pre></td></tr></table></figure>
+
+<p>그러나 모든 함수가 생성자 함수로 동작하는 것은 아니다.</p>
+<p>es6의 축약 표현으로 구현한 메소드나 화살표 함수는 생성자 함수로 기능하지 못한다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 화살표 함수 정의</span></span><br><span class="line"><span class="keyword">const</span> arrow = <span class="function">() =&gt;</span> &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> arrow(); <span class="comment">// TypeError: arrow is not a constructor</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 메서드 정의: ES6의 메서드 축약 표현만을 메서드로 인정한다.</span></span><br><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  x() &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> obj.x(); <span class="comment">// TypeError: obj.x is not a constructor</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1081,176 +1282,6 @@
 <li>우선순위</li>
 </ul>
 <h3 id="CSS-내장-함수"><a href="#CSS-내장-함수" class="headerlink" title="CSS 내장 함수"></a>CSS 내장 함수</h3><p>@impot url() -&gt; url() 함수안에 주소값을 인자로 작성하여 해당 파일을 가져올 수 있다.</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://parksaneon.github.io/2020/08/14/CSS3-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Park facamp">
-      <meta itemprop="description" content="All Dev stories">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Park facamp's blog">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/14/CSS3-1/" class="post-title-link" itemprop="url">CSS3-1</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-08-14 14:22:48 / Modified: 14:23:38" itemprop="dateCreated datePublished" datetime="2020-08-14T14:22:48+09:00">2020-08-14</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="CSS3"><a href="#CSS3" class="headerlink" title="CSS3"></a>CSS3</h1><p>버전 단위가 아닌 모듈 단위로 개발되고 있다. 몇가지 모듈은 권고안에 명시되어 있으나 또 다른 사항들은 초안단계에 머물러 있는 경우가 있다.</p>
-<p>모듈 : ex) selector, color, flex, grid…</p>
-<p>브라우저 마다 CSS의 모듈 지원성이 조끔식 다르다.</p>
-<p>한가지 문서라도 다른 CSS파일 적용에 따라 각각 다른 형태의 화면이 출력된다.</p>
-<h2 id="CSS-적용"><a href="#CSS-적용" class="headerlink" title="CSS 적용"></a>CSS 적용</h2><ul>
-<li><p>External</p>
-<ul>
-<li>CSS 파일을 외부에 생성하여 HTML 문서에 연결하는 방식으로 link 요소를 사용하는 방법과 @import 명령을 사용하는 두 가 지 방식이 있음. </li>
-<li>@import 방식은 url() 함수와 같이 사용된다.</li>
-</ul>
-</li>
-<li><p>Embedded </p>
-<ul>
-<li>head 태그 내부에 style 태그를 작성하고 그 내부에 CSS 코드를 직접 포함하여 스타일이 적용되도록 하는 방법.</li>
-</ul>
-</li>
-<li><p>Inline</p>
-<ul>
-<li>특정 HTML 요소에 style 속성을 사용하여 CSS 코드를 선언하는 방법임</li>
-<li>이 방법에 경우 유지보수에 어렵고 가독성이 떨어져 권장되는 방법은 안니다.</li>
-</ul>
-</li>
-</ul>
-<p>위의 3가지 적용 방법 중 External 벙법이 가장 권고되는 사항이다.</p>
-<p>MDN - Mozila Developer Network</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://parksaneon.github.io/2020/08/11/HTML5-Markup/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Park facamp">
-      <meta itemprop="description" content="All Dev stories">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Park facamp's blog">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/11/HTML5-Markup/" class="post-title-link" itemprop="url">HTML5_Markup</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-08-11 17:19:18 / Modified: 17:23:00" itemprop="dateCreated datePublished" datetime="2020-08-11T17:19:18+09:00">2020-08-11</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="HTML5-Markup"><a href="#HTML5-Markup" class="headerlink" title="HTML5 Markup"></a>HTML5 Markup</h1><h2 id="attribute-html-vs-property-css"><a href="#attribute-html-vs-property-css" class="headerlink" title="attribute(html) vs property(css)"></a>attribute(html) vs property(css)</h2><p>attribute는 html 태그에 추가적으로 제공하는 정보</p>
-<p>ex) class, id, title, lang, data-*, href, src, area, link…</p>
-<p>property는 태그가 태생적으로 가지고 있으며 변경이 가능한 정보</p>
-<p>ex) font-size, color…</p>
-<h2 id="새로운-표준-HTML5"><a href="#새로운-표준-HTML5" class="headerlink" title="새로운 표준 HTML5"></a>새로운 표준 HTML5</h2><p>명확한 정보 구조 설계 및 구성을 위해 카테고리 정의 및 이를 그룹화 한것이 HTML5의 콘텐츠 모델</p>
-<h5 id="5대-브라우저-및-제작사"><a href="#5대-브라우저-및-제작사" class="headerlink" title="5대 브라우저 및 제작사"></a>5대 브라우저 및 제작사</h5><ul>
-<li>IE - MS</li>
-<li>Chrome - Google</li>
-<li>Safari - Apple</li>
-<li>FireFox - Mozila</li>
-<li>Opera - Opera 재단(비영리 기관)</li>
-</ul>
-<h2 id="아웃라인-알고리즘-Outline-Algorithm"><a href="#아웃라인-알고리즘-Outline-Algorithm" class="headerlink" title="아웃라인 알고리즘(Outline Algorithm)"></a>아웃라인 알고리즘(Outline Algorithm)</h2><p>HTML 에는 정보 구조를 명확히 할 수 있도록 아웃라인 알고리즘이 존재해 왔다.</p>
-<p>–&gt; 웹 페이지의 정보 구조를 판별할 수 있는 개념으로, 책의 목차와 비슷</p>
-<h2 id="오프라인-웹-구현을-위한-API"><a href="#오프라인-웹-구현을-위한-API" class="headerlink" title="오프라인 웹 구현을 위한 API"></a>오프라인 웹 구현을 위한 API</h2><ul>
-<li>Web Storage<ul>
-<li>브라우저에 데이터를 저장하기 위한 공간으로 쿠키와 비교했을 때 데이터가 서버로 전송되지 않고 크기 제한, 유효기간 등이 없다.</li>
-</ul>
-</li>
-<li>Application Cache<ul>
-<li>오프라인에서 사용하는 데 필요한 리소스 (HTML, CSS, JS, 이미지 등)를 클라이언트 쪽에 캐시하기 위한 기능</li>
-<li>갑작스럽게 네트워크 연결이 끊겨도 기존에 봤던 이미지, 내용 등을 볼 수 있는 이유는 캐시쪽에 리소스가 저장되어 있기 떄문</li>
-</ul>
-</li>
-</ul>
-<p>link 태그에서 rel 속성을 생략할 시 stylesheet 속성값이 자동적으로 들어간다.</p>
-<p>script 태그도 마찬가지로 type 속성 생략시 text/javascript 속성값이 자동으로 들어간다.</p>
 
       
     </div>
