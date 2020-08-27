@@ -22,20 +22,20 @@
     var CONFIG = {"hostname":"parksaneon.github.io","root":"/","scheme":"Muse","version":"8.0.0-rc.5","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false};
   </script>
 
-  <meta name="description" content="HTML5 Markupattribute(html) vs property(css)attribute는 html 태그에 추가적으로 제공하는 정보 ex) class, id, title, lang, data-*, href, src, area, link… property는 태그가 태생적으로 가지고 있으며 변경이 가능한 정보 ex) font-size, color… 새로">
+  <meta name="description" content="strict mod자바스크립트는 사용자가 실수로 작성한 코드를 암묵적으로 변환하여 오류의 발생을 줄인다. 얼핏보면 장점으로 보이나 장기적인 관점에서 봤을 때 의도치 않은 에러가 발생할 수 있다. 이를 방지하기 위해 strict mod를 사용한다. 123456&#x2F;&#x2F; 즉시 실행 함수의 선두에 strict mode 적용(function () &amp;#123;  &amp;#x2">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HTML5_Markup">
-<meta property="og:url" content="http://parksaneon.github.io/2020/08/11/HTML5-Markup/index.html">
+<meta property="og:title" content="strict mod">
+<meta property="og:url" content="http://parksaneon.github.io/2020/08/27/strict-mod/index.html">
 <meta property="og:site_name" content="Park facamp&#39;s blog">
-<meta property="og:description" content="HTML5 Markupattribute(html) vs property(css)attribute는 html 태그에 추가적으로 제공하는 정보 ex) class, id, title, lang, data-*, href, src, area, link… property는 태그가 태생적으로 가지고 있으며 변경이 가능한 정보 ex) font-size, color… 새로">
+<meta property="og:description" content="strict mod자바스크립트는 사용자가 실수로 작성한 코드를 암묵적으로 변환하여 오류의 발생을 줄인다. 얼핏보면 장점으로 보이나 장기적인 관점에서 봤을 때 의도치 않은 에러가 발생할 수 있다. 이를 방지하기 위해 strict mod를 사용한다. 123456&#x2F;&#x2F; 즉시 실행 함수의 선두에 strict mode 적용(function () &amp;#123;  &amp;#x2">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-08-11T08:19:18.000Z">
-<meta property="article:modified_time" content="2020-08-11T08:23:00.144Z">
+<meta property="article:published_time" content="2020-08-27T08:14:11.000Z">
+<meta property="article:modified_time" content="2020-08-27T08:17:05.647Z">
 <meta property="article:author" content="Park facamp">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://parksaneon.github.io/2020/08/11/HTML5-Markup/">
+<link rel="canonical" href="http://parksaneon.github.io/2020/08/27/strict-mod/">
 
 
 <script class="page-configurations">
@@ -48,7 +48,7 @@
   };
 </script>
 
-  <title>HTML5_Markup | Park facamp's blog</title>
+  <title>strict mod | Park facamp's blog</title>
   
 
 
@@ -148,7 +148,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#HTML5-Markup"><span class="nav-number">1.</span> <span class="nav-text">HTML5 Markup</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#attribute-html-vs-property-css"><span class="nav-number">1.1.</span> <span class="nav-text">attribute(html) vs property(css)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%83%88%EB%A1%9C%EC%9A%B4-%ED%91%9C%EC%A4%80-HTML5"><span class="nav-number">1.2.</span> <span class="nav-text">새로운 표준 HTML5</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#5%EB%8C%80-%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80-%EB%B0%8F-%EC%A0%9C%EC%9E%91%EC%82%AC"><span class="nav-number">1.2.0.0.1.</span> <span class="nav-text">5대 브라우저 및 제작사</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%95%84%EC%9B%83%EB%9D%BC%EC%9D%B8-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-Outline-Algorithm"><span class="nav-number">1.3.</span> <span class="nav-text">아웃라인 알고리즘(Outline Algorithm)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%98%A4%ED%94%84%EB%9D%BC%EC%9D%B8-%EC%9B%B9-%EA%B5%AC%ED%98%84%EC%9D%84-%EC%9C%84%ED%95%9C-API"><span class="nav-number">1.4.</span> <span class="nav-text">오프라인 웹 구현을 위한 API</span></a></li></ol></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#strict-mod"><span class="nav-number">1.</span> <span class="nav-text">strict mod</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#strict-%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%9C-%ED%9B%84-%EB%B3%80%ED%99%94"><span class="nav-number">1.1.</span> <span class="nav-text">strict 를 사용한 후 변화</span></a></li></ol></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -198,7 +198,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://parksaneon.github.io/2020/08/11/HTML5-Markup/">
+    <link itemprop="mainEntityOfPage" href="http://parksaneon.github.io/2020/08/27/strict-mod/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -214,7 +214,7 @@
     
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          HTML5_Markup
+          strict mod
         </h1>
 
         <div class="post-meta">
@@ -225,7 +225,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-08-11 17:19:18 / Modified: 17:23:00" itemprop="dateCreated datePublished" datetime="2020-08-11T17:19:18+09:00">2020-08-11</time>
+              <time title="Created: 2020-08-27 17:14:11 / Modified: 17:17:05" itemprop="dateCreated datePublished" datetime="2020-08-27T17:14:11+09:00">2020-08-27</time>
             </span>
 
           
@@ -237,33 +237,35 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="HTML5-Markup"><a href="#HTML5-Markup" class="headerlink" title="HTML5 Markup"></a>HTML5 Markup</h1><h2 id="attribute-html-vs-property-css"><a href="#attribute-html-vs-property-css" class="headerlink" title="attribute(html) vs property(css)"></a>attribute(html) vs property(css)</h2><p>attribute는 html 태그에 추가적으로 제공하는 정보</p>
-<p>ex) class, id, title, lang, data-*, href, src, area, link…</p>
-<p>property는 태그가 태생적으로 가지고 있으며 변경이 가능한 정보</p>
-<p>ex) font-size, color…</p>
-<h2 id="새로운-표준-HTML5"><a href="#새로운-표준-HTML5" class="headerlink" title="새로운 표준 HTML5"></a>새로운 표준 HTML5</h2><p>명확한 정보 구조 설계 및 구성을 위해 카테고리 정의 및 이를 그룹화 한것이 HTML5의 콘텐츠 모델</p>
-<h5 id="5대-브라우저-및-제작사"><a href="#5대-브라우저-및-제작사" class="headerlink" title="5대 브라우저 및 제작사"></a>5대 브라우저 및 제작사</h5><ul>
-<li>IE - MS</li>
-<li>Chrome - Google</li>
-<li>Safari - Apple</li>
-<li>FireFox - Mozila</li>
-<li>Opera - Opera 재단(비영리 기관)</li>
-</ul>
-<h2 id="아웃라인-알고리즘-Outline-Algorithm"><a href="#아웃라인-알고리즘-Outline-Algorithm" class="headerlink" title="아웃라인 알고리즘(Outline Algorithm)"></a>아웃라인 알고리즘(Outline Algorithm)</h2><p>HTML 에는 정보 구조를 명확히 할 수 있도록 아웃라인 알고리즘이 존재해 왔다.</p>
-<p>–&gt; 웹 페이지의 정보 구조를 판별할 수 있는 개념으로, 책의 목차와 비슷</p>
-<h2 id="오프라인-웹-구현을-위한-API"><a href="#오프라인-웹-구현을-위한-API" class="headerlink" title="오프라인 웹 구현을 위한 API"></a>오프라인 웹 구현을 위한 API</h2><ul>
-<li>Web Storage<ul>
-<li>브라우저에 데이터를 저장하기 위한 공간으로 쿠키와 비교했을 때 데이터가 서버로 전송되지 않고 크기 제한, 유효기간 등이 없다.</li>
-</ul>
-</li>
-<li>Application Cache<ul>
-<li>오프라인에서 사용하는 데 필요한 리소스 (HTML, CSS, JS, 이미지 등)를 클라이언트 쪽에 캐시하기 위한 기능</li>
-<li>갑작스럽게 네트워크 연결이 끊겨도 기존에 봤던 이미지, 내용 등을 볼 수 있는 이유는 캐시쪽에 리소스가 저장되어 있기 떄문</li>
-</ul>
-</li>
-</ul>
-<p>link 태그에서 rel 속성을 생략할 시 stylesheet 속성값이 자동적으로 들어간다.</p>
-<p>script 태그도 마찬가지로 type 속성 생략시 text/javascript 속성값이 자동으로 들어간다.</p>
+        <h1 id="strict-mod"><a href="#strict-mod" class="headerlink" title="strict mod"></a>strict mod</h1><p>자바스크립트는 사용자가 실수로 작성한 코드를 암묵적으로 변환하여 오류의 발생을 줄인다. 얼핏보면 장점으로 보이나 장기적인 관점에서 봤을 때 의도치 않은 에러가 발생할 수 있다.</p>
+<p>이를 방지하기 위해 strict mod를 사용한다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 즉시 실행 함수의 선두에 strict mode 적용</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="meta">  &#x27;use strict&#x27;</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Do something...</span></span><br><span class="line">&#125;());</span><br></pre></td></tr></table></figure>
+
+<p>혹 외부 라이브러리를 사용한다면 저역 환경에 strict mod를 사용하다간 충돌이 발생할 수 있으므로 즉시 실행함수 (function(){}()) 내부에 사용하는 것이 좋다.</p>
+<h2 id="strict-를-사용한-후-변화"><a href="#strict-를-사용한-후-변화" class="headerlink" title="strict 를 사용한 후 변화"></a>strict 를 사용한 후 변화</h2><ol>
+<li>선언하지 않은 변수를 참조하면 에러가 발생한다.</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="meta">  &#x27;use strict&#x27;</span>;</span><br><span class="line"></span><br><span class="line">  x = <span class="number">1</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(x); <span class="comment">// ReferenceError: x is not defined</span></span><br><span class="line">&#125;());</span><br></pre></td></tr></table></figure>
+
+<p>원래 자바스크립트 엔진은 위의 상황에서 암묵적으로 전역 객체에 x 프로퍼티를 동적 생성한다.</p>
+<p>strict 모드를 사용함으로서 선언하지 않은 변수 1이란 값을 할당한 상황에서 정의되지 않은 변수라고 에러를 발생시킨다.</p>
+<ol start="2">
+<li>delete 연산자</li>
+</ol>
+<p>delete 연산자로 변수, 함수, 매개변수를 삭제하면 SyntaxError가 발생한다.</p>
+<ol start="3">
+<li>매개변수 이름의 중복</li>
+</ol>
+<p>중복된 매개변수 이름을 사용하면 SyntaxError가 발생한다.</p>
+<ol start="4">
+<li>일반 함수의 this</li>
+</ol>
+<p>strict mode 에서 함수를 일반 함수로서 호출하면 this에 undefined가 바인딩된다. </p>
+<p>원래 대로라면 window라는 전역 객체를 바인딩 한다.</p>
+<ol start="5">
+<li>arguments 객체</li>
+</ol>
+<p>매개변수에 전달된 인수를 재할당하여 변경하여도 arguments 객체에 반영되지 않는다.</p>
 
     </div>
 
@@ -277,13 +279,13 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2020/08/11/My-second-blog/" rel="prev" title="MY Second blog">
-                  <i class="fa fa-chevron-left"></i> MY Second blog
+                <a href="/2020/08/27/prototype/" rel="prev" title="">
+                  <i class="fa fa-chevron-left"></i> 
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2020/08/14/CSS3-1/" rel="next" title="CSS3-1">
-                  CSS3-1 <i class="fa fa-chevron-right"></i>
+                <a href="/2020/08/27/built-in-object/" rel="next" title="built in object">
+                  built in object <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
