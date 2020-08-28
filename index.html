@@ -158,7 +158,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -190,6 +190,354 @@
       
 
       
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://parksaneon.github.io/2020/08/28/ASCII-Unicode/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Park facamp">
+      <meta itemprop="description" content="All Dev stories">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Park facamp's blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/28/ASCII-Unicode/" class="post-title-link" itemprop="url">ASCII / Unicode</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-08-28 18:27:48 / Modified: 18:28:29" itemprop="dateCreated datePublished" datetime="2020-08-28T18:27:48+09:00">2020-08-28</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="아스키코드"><a href="#아스키코드" class="headerlink" title="아스키코드"></a>아스키코드</h2><p>아스키 코드 :  ASCII (American standard code for information interchange code)</p>
+<p>풀네임에서 알 수 있듯이 1960년대 미국에서 정의한 표준화한 부호체계이다.</p>
+<p> 미국 표준 정보교환 코드로 컴퓨터 내부에서 문자를 표현하는데 사용된다.</p>
+<p>여러 가지 이유로 아스키코드는 7비트 즉, 128개의 고유한 값만 사용한다.</p>
+<p><img src="https://t1.daumcdn.net/cfile/tistory/2366565058B9999205" alt="img"></p>
+<p> 0부터 32까지는 인쇄와 전송 제어용으로 사용되는 알 수 없는 용어들이 가득하다.</p>
+<p> 33부터 126까지는 숫자, 알파벳 소문자, 알파벳 대문자, 특수기호 등이 할당되어있는 것을 알 수 있다.</p>
+<p> charCodeAt 은 문자열중 하나를 선택하여 아스키코드 번호로 변환해주는 함수이며,</p>
+<p> fromCharCode 는 아스키코드번호를 받아 문자열을 구성해주는 함수이다.</p>
+<p>자바스크립트 charCodeAt 사용방법 (문자열을 아스키 코드로 변환)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;문자열&quot;</span>.charCodeAt([문자열 자릿수]);</span><br><span class="line"><span class="keyword">var</span> val = <span class="string">&quot;charCodeAt&quot;</span>;   <span class="built_in">document</span>.write(<span class="string">&quot;val.charCodeAt(4) : &quot;</span> + val.charCodeAt(<span class="number">4</span>) + <span class="string">&quot;&lt;br&gt;&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+<p>아스키코드 관련 표</p>
+<table>
+<thead>
+<tr>
+<th>번호</th>
+<th>코드</th>
+<th>번호</th>
+<th>코드</th>
+<th>번호</th>
+<th>코드</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>33</td>
+<td>!</td>
+<td>64</td>
+<td>@</td>
+<td>95</td>
+<td>_</td>
+</tr>
+<tr>
+<td>34</td>
+<td>“</td>
+<td>65</td>
+<td>A</td>
+<td>96</td>
+<td>`</td>
+</tr>
+<tr>
+<td>35</td>
+<td>#</td>
+<td>66</td>
+<td>B</td>
+<td>97</td>
+<td>a</td>
+</tr>
+<tr>
+<td>36</td>
+<td>$</td>
+<td>67</td>
+<td>C</td>
+<td>98</td>
+<td>b</td>
+</tr>
+<tr>
+<td>37</td>
+<td>%</td>
+<td>68</td>
+<td>D</td>
+<td>99</td>
+<td>c</td>
+</tr>
+<tr>
+<td>38</td>
+<td>&amp;</td>
+<td>69</td>
+<td>E</td>
+<td>100</td>
+<td>d</td>
+</tr>
+<tr>
+<td>39</td>
+<td>‘</td>
+<td>70</td>
+<td>F</td>
+<td>101</td>
+<td>e</td>
+</tr>
+<tr>
+<td>40</td>
+<td>(</td>
+<td>71</td>
+<td>G</td>
+<td>102</td>
+<td>f</td>
+</tr>
+<tr>
+<td>41</td>
+<td>)</td>
+<td>72</td>
+<td>H</td>
+<td>103</td>
+<td>g</td>
+</tr>
+<tr>
+<td>42</td>
+<td>*</td>
+<td>73</td>
+<td>I</td>
+<td>104</td>
+<td>h</td>
+</tr>
+<tr>
+<td>43</td>
+<td>+</td>
+<td>74</td>
+<td>J</td>
+<td>105</td>
+<td>i</td>
+</tr>
+<tr>
+<td>44</td>
+<td>,</td>
+<td>75</td>
+<td>K</td>
+<td>106</td>
+<td>j</td>
+</tr>
+<tr>
+<td>45</td>
+<td>-</td>
+<td>76</td>
+<td>L</td>
+<td>107</td>
+<td>k</td>
+</tr>
+<tr>
+<td>46</td>
+<td>.</td>
+<td>77</td>
+<td>M</td>
+<td>108</td>
+<td>l</td>
+</tr>
+<tr>
+<td>47</td>
+<td>/</td>
+<td>78</td>
+<td>N</td>
+<td>109</td>
+<td>m</td>
+</tr>
+<tr>
+<td>48</td>
+<td>0</td>
+<td>79</td>
+<td>O</td>
+<td>110</td>
+<td>n</td>
+</tr>
+<tr>
+<td>49</td>
+<td>1</td>
+<td>80</td>
+<td>P</td>
+<td>111</td>
+<td>o</td>
+</tr>
+<tr>
+<td>50</td>
+<td>2</td>
+<td>81</td>
+<td>Q</td>
+<td>112</td>
+<td>p</td>
+</tr>
+<tr>
+<td>51</td>
+<td>3</td>
+<td>82</td>
+<td>R</td>
+<td>113</td>
+<td>q</td>
+</tr>
+<tr>
+<td>52</td>
+<td>4</td>
+<td>83</td>
+<td>S</td>
+<td>114</td>
+<td>r</td>
+</tr>
+<tr>
+<td>53</td>
+<td>5</td>
+<td>84</td>
+<td>T</td>
+<td>115</td>
+<td>s</td>
+</tr>
+<tr>
+<td>54</td>
+<td>6</td>
+<td>85</td>
+<td>U</td>
+<td>116</td>
+<td>t</td>
+</tr>
+<tr>
+<td>55</td>
+<td>7</td>
+<td>86</td>
+<td>V</td>
+<td>117</td>
+<td>u</td>
+</tr>
+<tr>
+<td>56</td>
+<td>8</td>
+<td>87</td>
+<td>W</td>
+<td>118</td>
+<td>v</td>
+</tr>
+<tr>
+<td>57</td>
+<td>9</td>
+<td>88</td>
+<td>X</td>
+<td>119</td>
+<td>w</td>
+</tr>
+<tr>
+<td>58</td>
+<td>:</td>
+<td>89</td>
+<td>Y</td>
+<td>120</td>
+<td>x</td>
+</tr>
+<tr>
+<td>59</td>
+<td>;</td>
+<td>90</td>
+<td>Z</td>
+<td>121</td>
+<td>y</td>
+</tr>
+<tr>
+<td>60</td>
+<td>&lt;</td>
+<td>91</td>
+<td>[</td>
+<td>122</td>
+<td>z</td>
+</tr>
+<tr>
+<td>61</td>
+<td>=</td>
+<td>92</td>
+<td>\</td>
+<td>123</td>
+<td>{</td>
+</tr>
+<tr>
+<td>62</td>
+<td>&gt;</td>
+<td>93</td>
+<td>]</td>
+<td>124</td>
+<td>|</td>
+</tr>
+<tr>
+<td>63</td>
+<td>?</td>
+<td>94</td>
+<td>^</td>
+<td>125</td>
+<td>}</td>
+</tr>
+</tbody></table>
+<h2 id="유니코드"><a href="#유니코드" class="headerlink" title="유니코드"></a>유니코드</h2><p><strong>아스키 코드의 확장.</strong></p>
+<p>전 세계의 모든 문자를 컴퓨터에서 일관되게 표현하고 다룰 수 있도록 설계된 산업 표준으로 우리가 자주 사용하는 <strong>UTF-8</strong> 도 유니코드를 위한 가변 길이 문자 인코딩 방식 중의 하나.</p>
+<p>유니코드를 사용하면, 한글과 중국어, 아랍문자등을 동일한 환경에서 깨지지 않고 사용이 가능하며, 문자를 16비트로 표현해서 최대 65,536자까지 표현할 수 있다.</p>
+<p><strong>유니코드는 국제표준 문자표이고 UTF-8은 인코딩 방식이다.</strong> </p>
+<h4 id="UTF-8"><a href="#UTF-8" class="headerlink" title="UTF-8"></a>UTF-8</h4><p>유니코드를 통해 코드표가 정의되었다. 다른 말로 인코딩(encoding)이라고 하는데, 컴퓨터가 이해할 수 있는 형태로 바꿔주는 것이다. </p>
+<p>예를 들어, 길동이가 자기만의 암호체계를 만들었는데 ‘가’는 0001(=1)로, ‘나’는 0010(=2)이라고 하자. 길동이가 ‘가나나가’라고 말하면 컴퓨터에는 0001 0010 0010 0001로 저장한다. 글자당 1 byte로 할당해 4 byte로 저장할 수 있고 00010010 00100001처럼 2byte로 저장할 수도 있다. 이건 전적으로 길동이와 컴퓨터간의 약속이다. 길동이만 쓸 때는 문제가 없는데 전세계 사람들이 사용하려면 좀 더 잘 만들어야 할것이다.</p>
+<p>유니코드에는 총 110만 개가 넘는 코드를 지정할 수 있게 되었는데, 유니코드는 이를 17개 구역으로 나눴다.</p>
+<p>17개 구역인 이유는 2바이트에 해당하는 65,536으로 110만이라는 숫자를 나눈 것이다. 이 구역 하나하나를 ‘평면(plane)’이라고 부른다. </p>
+<p><strong>10진수 표현</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> uniCode = <span class="string">&quot;가&quot;</span>.charCodeAt(<span class="number">0</span>); <span class="comment">// 44032</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>16진수 표현</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> uniCode = <span class="keyword">var</span> uniCode = <span class="string">&quot;가&quot;</span>.charCodeAt(<span class="number">0</span>).toString(<span class="number">16</span>); <span class="comment">// ac00</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1156,74 +1504,6 @@
 <p>const에 선언한 원시값 ( string, number, boolean, null, undefined…) 등은 값 변경이 불가능 하다.</p>
 <p>그러나 객체를 할당한 경우에는 값 재할당은 불가능 하지만, 객체 내부의 값을 변경하는 것은 가능하다. 객체 내부의 값 수정은 재할당이 없어도 가능하기 때문이다.</p>
 <p>프로퍼티 동적 생성, 삭제, 프로퍼티 값의 변경을 통해 객체를 변경하는 것은 가능하다. </p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://parksaneon.github.io/2020/08/25/life-cycle/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Park facamp">
-      <meta itemprop="description" content="All Dev stories">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Park facamp's blog">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/25/life-cycle/" class="post-title-link" itemprop="url">life-cycle</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-08-25 15:55:40 / Modified: 15:57:22" itemprop="dateCreated datePublished" datetime="2020-08-25T15:55:40+09:00">2020-08-25</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="변수-생명주기"><a href="#변수-생명주기" class="headerlink" title="변수 생명주기"></a>변수 생명주기</h1><p>변수는 선언에 의해 생성되고 할당에 의해 값을 할당받는다. 그리고 사용이 끝난 변수는 소멸하는데 이를 생명주기라고 한다.</p>
-<p>생명주기가 없다면 변수는 종료를 하지 않는 한 메모리 공간을 계속 점유한다.</p>
-<p>전역변수는 웹 어플의 생명주기와 같고 지역변수는 해당 함수가 종료시에 같이 소멸한다. 이는 지역 함수는 함수가 호출되어 실행되는 동안만 생명주기가 유효하다는 의미다.</p>
-<h3 id="지역-변수"><a href="#지역-변수" class="headerlink" title="지역 변수"></a>지역 변수</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="string">&#x27;global&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(x); <span class="comment">// ①</span></span><br><span class="line">  <span class="keyword">var</span> x = <span class="string">&#x27;local&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo();</span><br><span class="line"><span class="built_in">console</span>.log(x); <span class="comment">// global</span></span><br></pre></td></tr></table></figure>
-
-<p>호이스팅은 전역 환경에서만 일어나는 것이 아니라, 지역(함수) 환경에서도 일어난다. 따라서 위의 foo 함수에서는 x라는 변수가 먼저 호이스팅 되므로 undefined가 출력된다.</p>
-<p>호이스팅은 스코프 단위로 일어난다.지역 변수의 호이스팅은 지역 변수의 선언이 지역 스코프의 선두로 끌어 올려진 것처럼 동작한다. 따라서 지역 변수는 함수 전체에서 유효하다. (변수의 선언이 해당 스코프의 선두로 올라간다는 의미) </p>
-<h3 id="전역-변수"><a href="#전역-변수" class="headerlink" title="전역 변수"></a>전역 변수</h3><p>지역변수에 비해 전역변수는 생명주기가 길다. 이것은 메모리 소비가 그만큼 높고, 지역 환경에서 전역 변수 검색시 가장 마지막에 검색이 되어 속도상의 차이도 분명이 존재한다.</p>
-<p>이를 방지하기 위해서, 전역대신 즉시실행함수를 이용하여 변수를 선언하거나 전역 환경에 객체를 생성하고 그 객체에 전역 변수처럼 사용할 변수들을 저장하는 방법등이 존재한다.</p>
 
       
     </div>
