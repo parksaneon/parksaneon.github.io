@@ -158,7 +158,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -190,6 +190,129 @@
       
 
       
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://parksaneon.github.io/2020/08/27/prototype/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Park facamp">
+      <meta itemprop="description" content="All Dev stories">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Park facamp's blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/27/prototype/" class="post-title-link" itemprop="url">prototype</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-08-27 17:12:11" itemprop="dateCreated datePublished" datetime="2020-08-27T17:12:11+09:00">2020-08-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-08-28 17:34:22" itemprop="dateModified" datetime="2020-08-28T17:34:22+09:00">2020-08-28</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Prototype"><a href="#Prototype" class="headerlink" title="Prototype"></a>Prototype</h1><p>객체 지향 언어 :  객체(object)의 집합으로 프로그램을 표현하려는 프로그래밍 언어</p>
+<p>자바스크립트는 프로토타입 기반의 객체지향 프로그래밍 언어 이다.</p>
+<p><strong>자바스크립트는 객체 기반의 프로그래밍 언어이며 자바스크립트를 이루고 있는 “거의 모든 것”이 객체다.</strong> 원시 타입(primitive type)의 값을 제외한 나머지 값들(함수, 배열, 정규표현식 등)은 모두 객체다.</p>
+<p>원시 타입</p>
+<ul>
+<li>string</li>
+<li>number</li>
+<li>boolean</li>
+<li>null</li>
+<li>undefined</li>
+<li>symbol</li>
+</ul>
+<p>객체 타입</p>
+<ul>
+<li>객체<ul>
+<li>배열</li>
+<li>함수</li>
+<li>정규표현식</li>
+</ul>
+</li>
+</ul>
+<p>사람에게는 다양한 속성이 있으나 우리가 구현하려는 프로그램에서는 사람의 “이름”과 “주소”라는 속성에만 관심이 있다고 가정하자. 이처럼 다양한 속성 중에서 프로그램에 필요한 속성만 간추려 내어 표현하는 것을 **추상화(abstraction)**라 한다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 이름과 주소 속성을 갖는 객체</span></span><br><span class="line"><span class="keyword">const</span> person = &#123;</span><br><span class="line">  name: <span class="string">&#x27;Lee&#x27;</span>,</span><br><span class="line">  address: <span class="string">&#x27;Seoul&#x27;</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>이처럼 객체지향 프로그래밍은 객체의 **상태(state)**를 나타내는 데이터와 상태 데이터를 조작할 수 있는 **동작(behavior)**을 하나의 논리적인 단위로 묶어 생각한다.</p>
+<p>객체 : <strong>상태 데이터와 동작을 하나의 논리적인 단위로 묶은 복합적인 자료구조</strong></p>
+<p>자바스크립트의 객체에서는 상태 데이터를 프로퍼티(property), 동작을 메서드(method)라 부른다.</p>
+<h3 id="상속과-프로토타입"><a href="#상속과-프로토타입" class="headerlink" title="상속과 프로토타입"></a>상속과 프로토타입</h3><p>어떤 객체의 프로퍼티 또는 메서드를 다른 객체가 상속받아 그대로 사용할 수 있는 것을 말한다.</p>
+<p>상속을 사용하면 불필요한 중복을 제거할 수 있고, 이는 기존의 코드를 재사용하는 것으로 구현이 가능하다.</p>
+<p>생성자 함수를 이용하면 미리 구현 템플릿으로 형태가 같은 객체(인스턴스)를 여러개로 생성이 가능하다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 생성자 함수</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Circle</span>(<span class="params">radius</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.radius = radius;</span><br><span class="line">  <span class="built_in">this</span>.getArea = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// Math.PI는 원주율을 나타내는 상수다.</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.PI * <span class="built_in">this</span>.radius ** <span class="number">2</span>;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 반지름이 1인 인스턴스 생성</span></span><br><span class="line"><span class="keyword">const</span> circle1 = <span class="keyword">new</span> Circle(<span class="number">1</span>);</span><br><span class="line"><span class="comment">// 반지름이 2인 인스턴스 생성</span></span><br><span class="line"><span class="keyword">const</span> circle2 = <span class="keyword">new</span> Circle(<span class="number">2</span>);</span><br><span class="line"><span class="built_in">console</span>.log(circle1.getArea === circle2.getArea); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<p>그런데 위의 예제에서는 getArea라는 함수는 중복적인 내용이다.</p>
+<p>중복적인 내용을 각 인스턴스가 소유하는 것보다는 하나만 생성하여 이를 공유하는 것이 메모리상으로 효율적이다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Circle.prototype.getArea = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.PI * <span class="built_in">this</span>.radius ** <span class="number">2</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 인스턴스 생성</span></span><br><span class="line"><span class="keyword">const</span> circle1 = <span class="keyword">new</span> Circle(<span class="number">1</span>);</span><br><span class="line"><span class="keyword">const</span> circle2 = <span class="keyword">new</span> Circle(<span class="number">2</span>);</span><br><span class="line"><span class="built_in">console</span>.log(circle1.getArea === circle2.getArea); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>모든 생성자 함수는 해당 함수와 짝이 되는 프로토 타입을 가지며, 생성된 객체는 해당 프로토타입의 모든 프로퍼티와 메서드를 상속받는다.</p>
+<h3 id="프로토타입"><a href="#프로토타입" class="headerlink" title="프로토타입"></a>프로토타입</h3><p>프로토타입 객체(또는 줄여서 프로토타입)란 객체지향 프로그래밍의 근간을 이루는 객체 간 상속을 구현하기 위해 사용된다. </p>
+<p>프로토타입은 어떤 객체의 상위(부모) 객체의 역할을 하는 객체로서 다른 객체에 공유 프로퍼티(메서드 포함)를 제공한다. 프로토타입을 상속받은 하위(자식) 객체는 상위 객체의 프로퍼티를 자신의 프로퍼티처럼 자유롭게 사용할 수 있다.</p>
+<p>모든 객체는 하나의 프로토타입을 갖는다.([[Prototype]]) 그리고 모든 프로토타입은 생성자 함수와 연결되어 있다.</p>
+<p>객체 리터럴에 의해 생성된 객체의 프로토타입은 Object.prototype이고,</p>
+<p>생성자 함수에 의해 생성된 객체의 프로토타입은 생성자 함수의 prototype 프로퍼티에 바인딩되어 있는 객체다. </p>
+<p>[[Prototype]] 내부 슬롯에는 직접 접근할 수 없지만, <strong>proto</strong> 접근자 프로퍼티를 통해 자신의 프로토타입, 즉 자신의 [[Prototype]] 내부 슬롯이 가리키는 프로토타입에 간접적으로 접근할 수 있다.</p>
+<p>그리고 프로토타입은 자신의 constructor 프로퍼티를 통해 생성자 함수에 접근할 수 있고, 생성자 함수는 자신의 prototype 프로퍼티를 통해 프로토타입에 접근할 수 있다.</p>
+<h3 id="proto"><a href="#proto" class="headerlink" title="proto"></a><strong>proto</strong></h3><p><strong>모든 객체는 <strong>proto</strong> 접근자 프로퍼티를 통해 자신의 프로토타입, 즉 [[Prototype]] 내부 슬롯에 간접적으로 접근할 수 있다.</strong> </p>
+<p><strong>proto</strong> 접근자 프로퍼티는 상속을 통해 사용된다.</p>
+<p><strong>proto</strong> 접근자 프로퍼티는 객체가 직접 소유하는 프로퍼티가 아니라 Object.prototype의 프로퍼티다. 모든 객체는 상속을 통해 Object.prototype.<strong>proto</strong> 접근자 프로퍼티를 사용할 수 있다.</p>
+<h4 id="Object-prototype"><a href="#Object-prototype" class="headerlink" title="Object.prototype"></a>Object.prototype</h4><p>모든 객체는 프로토타입의 계층 구조인 프로토타입 체인에 묶여 있다. 자바스크립트 엔진은 객체의 프로퍼티(메서드 포함)에 접근하려고 할 때 해당 객체에 접근하려는 프로퍼티가 없다면 <strong>proto</strong> 접근자 프로퍼티가 가리키는 참조를 따라 자신의 부모 역할을 하는 프로토타입의 프로퍼티를 순차적으로 검색한다. </p>
+<p>프로토타입 체인의 종점, 즉 프로토타입 체인의 최상위 객체는 Object.prototype이며, 이 객체의 프로퍼티와 메서드는 모든 객체에게 상속된다. </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = <span class="built_in">Object</span>.create(<span class="literal">null</span>);</span><br></pre></td></tr></table></figure>
+
+<p>Object.create() 함수를 사용하면 해당 객체의 prototype을 지정할 수 있는데 저렇게 명시적으로 지정을 하면 프로토타입으로부터 상속을 받을 수 없다.</p>
+<h3 id="생성자-함수-prototype"><a href="#생성자-함수-prototype" class="headerlink" title="생성자 함수 prototype"></a>생성자 함수 prototype</h3><p>함수 객체만이 소유하는 prototype 프로퍼티는 생성자 함수가 생성할 인스턴스의 프로토타입을 가리킨다.</p>
+<p>일반 객체는 프로토 타입을 Object.prototype을 가지며,</p>
+<p>생성사 함수에 의함 객체는 프로토 타입을 생성자 함수의 prototype로 가진다.</p>
+<p>생정자 함수의 prototype은 프로토 타입으로 Object.prototype을 가진다.</p>
+<p>Object.prototype -&gt; 생성자 함수 prototype -&gt; 인스턴스</p>
+<p>Object.prototype -&gt; 일반 객체  </p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1169,92 +1292,6 @@
 </ul>
 <p>위의 3가지 적용 방법 중 External 벙법이 가장 권고되는 사항이다.</p>
 <p>MDN - Mozila Developer Network</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://parksaneon.github.io/2020/08/11/HTML5-Markup/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Park facamp">
-      <meta itemprop="description" content="All Dev stories">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Park facamp's blog">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/11/HTML5-Markup/" class="post-title-link" itemprop="url">HTML5_Markup</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-08-11 17:19:18 / Modified: 17:23:00" itemprop="dateCreated datePublished" datetime="2020-08-11T17:19:18+09:00">2020-08-11</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="HTML5-Markup"><a href="#HTML5-Markup" class="headerlink" title="HTML5 Markup"></a>HTML5 Markup</h1><h2 id="attribute-html-vs-property-css"><a href="#attribute-html-vs-property-css" class="headerlink" title="attribute(html) vs property(css)"></a>attribute(html) vs property(css)</h2><p>attribute는 html 태그에 추가적으로 제공하는 정보</p>
-<p>ex) class, id, title, lang, data-*, href, src, area, link…</p>
-<p>property는 태그가 태생적으로 가지고 있으며 변경이 가능한 정보</p>
-<p>ex) font-size, color…</p>
-<h2 id="새로운-표준-HTML5"><a href="#새로운-표준-HTML5" class="headerlink" title="새로운 표준 HTML5"></a>새로운 표준 HTML5</h2><p>명확한 정보 구조 설계 및 구성을 위해 카테고리 정의 및 이를 그룹화 한것이 HTML5의 콘텐츠 모델</p>
-<h5 id="5대-브라우저-및-제작사"><a href="#5대-브라우저-및-제작사" class="headerlink" title="5대 브라우저 및 제작사"></a>5대 브라우저 및 제작사</h5><ul>
-<li>IE - MS</li>
-<li>Chrome - Google</li>
-<li>Safari - Apple</li>
-<li>FireFox - Mozila</li>
-<li>Opera - Opera 재단(비영리 기관)</li>
-</ul>
-<h2 id="아웃라인-알고리즘-Outline-Algorithm"><a href="#아웃라인-알고리즘-Outline-Algorithm" class="headerlink" title="아웃라인 알고리즘(Outline Algorithm)"></a>아웃라인 알고리즘(Outline Algorithm)</h2><p>HTML 에는 정보 구조를 명확히 할 수 있도록 아웃라인 알고리즘이 존재해 왔다.</p>
-<p>–&gt; 웹 페이지의 정보 구조를 판별할 수 있는 개념으로, 책의 목차와 비슷</p>
-<h2 id="오프라인-웹-구현을-위한-API"><a href="#오프라인-웹-구현을-위한-API" class="headerlink" title="오프라인 웹 구현을 위한 API"></a>오프라인 웹 구현을 위한 API</h2><ul>
-<li>Web Storage<ul>
-<li>브라우저에 데이터를 저장하기 위한 공간으로 쿠키와 비교했을 때 데이터가 서버로 전송되지 않고 크기 제한, 유효기간 등이 없다.</li>
-</ul>
-</li>
-<li>Application Cache<ul>
-<li>오프라인에서 사용하는 데 필요한 리소스 (HTML, CSS, JS, 이미지 등)를 클라이언트 쪽에 캐시하기 위한 기능</li>
-<li>갑작스럽게 네트워크 연결이 끊겨도 기존에 봤던 이미지, 내용 등을 볼 수 있는 이유는 캐시쪽에 리소스가 저장되어 있기 떄문</li>
-</ul>
-</li>
-</ul>
-<p>link 태그에서 rel 속성을 생략할 시 stylesheet 속성값이 자동적으로 들어간다.</p>
-<p>script 태그도 마찬가지로 type 속성 생략시 text/javascript 속성값이 자동으로 들어간다.</p>
 
       
     </div>
