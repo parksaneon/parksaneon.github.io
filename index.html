@@ -402,7 +402,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-09-26 21:14:34 / Modified: 23:15:01" itemprop="dateCreated datePublished" datetime="2020-09-26T21:14:34+09:00">2020-09-26</time>
+              <time title="Created: 2020-09-26 21:14:34 / Modified: 23:35:08" itemprop="dateCreated datePublished" datetime="2020-09-26T21:14:34+09:00">2020-09-26</time>
             </span>
 
           
@@ -434,8 +434,8 @@
 
 
 <h3 id="원시값-래퍼-객체"><a href="#원시값-래퍼-객체" class="headerlink" title="원시값 / 래퍼 객체"></a>원시값 / 래퍼 객체</h3><p>문자열이나 숫자, 불리언 등의 원시값이 있는데도 문자열, 숫자, 불리언 객체를 생성하는 String, Number, Boolean 등의 표준 빌트인 생성자 함수가 존재한다.<br>생성자 함수로서 함수 객체를 호출할 때는 new 키워드를 호출문 앞에 붙이는 것으로서 생성자 함수로서 내부 메서드 [[Construct]] 가 호출된다.</p>
-<p>String, Number, Boolean 등도 new랑 같이 호출되면<br>[‘123’], [123], [true] 의 객체가 호출된다. </p>
-<p>보통은 저렇게 원시값을 굳이 객체로 바꾸지는 않는다.<br>그러나 이러한 방식은 명시적인 사용을 하지는 않지만, 위의 기능은 자바스크립트 엔진에 의한 내부적으로 동작이되는 때가 있으며<br>반드시 필요한 기능이다.</p>
+<p>만약에 123이라는 숫자값을 각각 String, Number, Boolean 등의 함수 호출문에 인수로 전달하고 new 키워드로 생성사 함수로서 호출하면 [‘123’], [123], [true] 의 객체가 호출된다. </p>
+<p>보통은 저렇게 원시값을 굳이 객체로 바꾸지는 않는다.<br>그러나 이러한 방식은 명시적인 사용하지는 않지만, 자바스크립트 엔진에 의한 내부적으로 동작이되는 때가 있으며 반드시 필요한 암묵적인 기능이다.</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> str = <span class="string">&#x27;hello&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 원시 타입인 문자열이 프로퍼티와 메서드를 갖고 있는 객체처럼 동작한다.</span></span><br><span class="line"><span class="built_in">console</span>.log(str.length); <span class="comment">// 5</span></span><br><span class="line"><span class="built_in">console</span>.log(str.toUpperCase()); <span class="comment">// HELLO</span></span><br></pre></td></tr></table></figure>
 
 <p>위의 예시에서 원시값은 객체가 아니므로 프로퍼티나 메서드를 가질 수 없는데도 원시값인 문자열이 마치 객체처럼 동작한다.</p>
@@ -717,7 +717,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-09-26 20:11:44 / Modified: 23:07:25" itemprop="dateCreated datePublished" datetime="2020-09-26T20:11:44+09:00">2020-09-26</time>
+              <time title="Created: 2020-09-26 20:11:44 / Modified: 23:33:00" itemprop="dateCreated datePublished" datetime="2020-09-26T20:11:44+09:00">2020-09-26</time>
             </span>
 
           
@@ -773,9 +773,18 @@
 
 
 
-<h2 id="proto-접근자-프로퍼티"><a href="#proto-접근자-프로퍼티" class="headerlink" title="proto 접근자 프로퍼티"></a><strong>proto</strong> 접근자 프로퍼티</h2><p>모든 객체는 [[Prototype]]이라는 내부 슬롯을 갖는다. [[Prototype]] 내부 슬롯은 객체 지향 프로그래밍의 상속을 구현하는 프로토타입 객체를 가리킨다.</p>
+<h3 id="caller-프로퍼티"><a href="#caller-프로퍼티" class="headerlink" title="caller 프로퍼티"></a>caller 프로퍼티</h3><p>함수 자신을 호출한 함수를 가르킨다. 만약에 호출한 함수가 자기자신이면 null 값이 할당되고</p>
+<p>자신이 매개변수에 할당된 콜백함수로서 해당 고차함수에 의해 호출된다면 그 고차함수가 값으로 할당된다.</p>
+<h3 id="length-프로퍼티"><a href="#length-프로퍼티" class="headerlink" title="length 프로퍼티"></a>length 프로퍼티</h3><p>함수를 정의할 때 선언한 매개변수의 개수가 값으로 할당된다.</p>
+<p>위의 arguments 프로퍼티는 객체값으로서 length 프로퍼티 값을 사용해서 나온 숫자값과 와 헷갈릴 수 있으므로 차이점을 정리해본다. </p>
+<p>length 프로퍼티는 생성할 때 작성한 매개변수의 개수이고,</p>
+<p>arguments 프로퍼티의 length는 호출할 때 전달한 인수의 개수를 출력한다.</p>
+<h3 id="name-프로퍼티"><a href="#name-프로퍼티" class="headerlink" title="name 프로퍼티"></a>name 프로퍼티</h3><p>es5에서는 익명 함수 표현식일 경우 빈 문자열을 값으로 가지지만,</p>
+<p>es6부터는 함수객체를 가르키는 식별자를 가르킨다.</p>
+<p>요컨대 함수선언문에서 함수 이름과 똑같은 암묵적으로 생성된 식별자, 일반 변수로서 사용되어 함수 리터럴을 할당받은 식별자등이 값이 된다는 말이다.</p>
+<h3 id="proto-접근자-프로퍼티"><a href="#proto-접근자-프로퍼티" class="headerlink" title="_ proto _ 접근자 프로퍼티"></a>_ <em>proto</em> _ 접근자 프로퍼티</h3><p>모든 객체는 [[Prototype]]이라는 내부 슬롯을 갖는다. [[Prototype]] 내부 슬롯은 객체 지향 프로그래밍의 상속을 구현하는 프로토타입 객체를 가리킨다.</p>
 <p><strong>proto</strong> 는 [[Prototype]] 내부 슬롯이 가리키는 프로토타입 객체에 접근하기 위해 사용하는 접근자 프로퍼티다.</p>
-<h2 id="prototype-프로퍼티"><a href="#prototype-프로퍼티" class="headerlink" title="prototype 프로퍼티"></a>prototype 프로퍼티</h2><p>prototype 프로퍼티는 생성자 함수만이 소유하는 프로퍼티다. 일반 객체와 생성자 함수로 호출할 수 없는 함수에는 prototype 프로퍼티가 없다.</p>
+<h3 id="prototype-프로퍼티"><a href="#prototype-프로퍼티" class="headerlink" title="prototype 프로퍼티"></a>prototype 프로퍼티</h3><p>prototype 프로퍼티는 생성자 함수만이 소유하는 프로퍼티다. 일반 객체와 생성자 함수로 호출할 수 없는 함수에는 prototype 프로퍼티가 없다.</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 함수 객체는 prototype 프로퍼티를 소유한다.</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;).hasOwnProperty(<span class="string">&#x27;prototype&#x27;</span>); <span class="comment">// -&gt; true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 일반 객체는 prototype 프로퍼티를 소유하지 않는다.</span></span><br><span class="line">(&#123;&#125;).hasOwnProperty(<span class="string">&#x27;prototype&#x27;</span>); <span class="comment">// -&gt; false</span></span><br></pre></td></tr></table></figure>
 
 <p>prototype 프로퍼티는 함수가 객체를 생성하는 생성자 함수로 호출될 때 생성자 함수가 생성할 인스턴스의 프로토타입 객체를 가리킨다.</p>

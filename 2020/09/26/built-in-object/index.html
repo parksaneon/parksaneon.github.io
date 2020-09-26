@@ -30,7 +30,7 @@
 <meta property="og:description" content="Built in Object ( 빌트 인 객체 )JS 객체의 정류   표준 빌트인 객체  : ECMAScript 사양에 정의된 객체로서, 애플리케이션 전역의 공통 기능을 제공  ​    빌트인 객체는 ECMAScript 사양에 정의된 객체이므로 자바스크립트 실행 환경(브라우저 또는 Node.js 환경)과 관계없이 언제나 사용할 수 있다. 표준 빌트인 객">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-09-26T12:14:34.000Z">
-<meta property="article:modified_time" content="2020-09-26T14:15:01.303Z">
+<meta property="article:modified_time" content="2020-09-26T14:35:08.557Z">
 <meta property="article:author" content="Park facamp">
 <meta name="twitter:card" content="summary">
 
@@ -225,7 +225,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-09-26 21:14:34 / Modified: 23:15:01" itemprop="dateCreated datePublished" datetime="2020-09-26T21:14:34+09:00">2020-09-26</time>
+              <time title="Created: 2020-09-26 21:14:34 / Modified: 23:35:08" itemprop="dateCreated datePublished" datetime="2020-09-26T21:14:34+09:00">2020-09-26</time>
             </span>
 
           
@@ -257,8 +257,8 @@
 
 
 <h3 id="원시값-래퍼-객체"><a href="#원시값-래퍼-객체" class="headerlink" title="원시값 / 래퍼 객체"></a>원시값 / 래퍼 객체</h3><p>문자열이나 숫자, 불리언 등의 원시값이 있는데도 문자열, 숫자, 불리언 객체를 생성하는 String, Number, Boolean 등의 표준 빌트인 생성자 함수가 존재한다.<br>생성자 함수로서 함수 객체를 호출할 때는 new 키워드를 호출문 앞에 붙이는 것으로서 생성자 함수로서 내부 메서드 [[Construct]] 가 호출된다.</p>
-<p>String, Number, Boolean 등도 new랑 같이 호출되면<br>[‘123’], [123], [true] 의 객체가 호출된다. </p>
-<p>보통은 저렇게 원시값을 굳이 객체로 바꾸지는 않는다.<br>그러나 이러한 방식은 명시적인 사용을 하지는 않지만, 위의 기능은 자바스크립트 엔진에 의한 내부적으로 동작이되는 때가 있으며<br>반드시 필요한 기능이다.</p>
+<p>만약에 123이라는 숫자값을 각각 String, Number, Boolean 등의 함수 호출문에 인수로 전달하고 new 키워드로 생성사 함수로서 호출하면 [‘123’], [123], [true] 의 객체가 호출된다. </p>
+<p>보통은 저렇게 원시값을 굳이 객체로 바꾸지는 않는다.<br>그러나 이러한 방식은 명시적인 사용하지는 않지만, 자바스크립트 엔진에 의한 내부적으로 동작이되는 때가 있으며 반드시 필요한 암묵적인 기능이다.</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> str = <span class="string">&#x27;hello&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 원시 타입인 문자열이 프로퍼티와 메서드를 갖고 있는 객체처럼 동작한다.</span></span><br><span class="line"><span class="built_in">console</span>.log(str.length); <span class="comment">// 5</span></span><br><span class="line"><span class="built_in">console</span>.log(str.toUpperCase()); <span class="comment">// HELLO</span></span><br></pre></td></tr></table></figure>
 
 <p>위의 예시에서 원시값은 객체가 아니므로 프로퍼티나 메서드를 가질 수 없는데도 원시값인 문자열이 마치 객체처럼 동작한다.</p>
