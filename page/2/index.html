@@ -158,7 +158,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -190,6 +190,113 @@
       
 
       
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://parksaneon.github.io/2020/09/20/new-function/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Park facamp">
+      <meta itemprop="description" content="All Dev stories">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Park facamp's blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/20/new-function/" class="post-title-link" itemprop="url">new function</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-09-20 09:11:34 / Modified: 14:10:16" itemprop="dateCreated datePublished" datetime="2020-09-20T09:11:34+09:00">2020-09-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="생성자-함수"><a href="#생성자-함수" class="headerlink" title="생성자 함수"></a>생성자 함수</h1><p>생성자 함수 : new 연산자와 함께 호출하여 객체(인스턴스)를 생성하는 함수</p>
+<p>인스턴스 : 생성자 함수에 의해 생성된 객체</p>
+<p>객체는 객체 리터럴 {} 외에도 생성하는 방법이 몇가지 존재하는데 생성자 함수도 그중 하나이다.</p>
+<h3 id="Object-생성자-함수"><a href="#Object-생성자-함수" class="headerlink" title="Object 생성자 함수"></a>Object 생성자 함수</h3><p>new키워드와 Object 함수를 이용하여 객체를 생성하고 해당 객체에 사용을 원하는 프로퍼티 추가</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 객체 생성</span></span><br><span class="line"><span class="keyword">const</span> person = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 프로퍼티 추가</span></span><br><span class="line">person.name = <span class="string">&#x27;Lee&#x27;</span>;</span><br><span class="line">person.sayHello = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;Hi! My name is &#x27;</span> + <span class="built_in">this</span>.name);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>위의 방식 보다는 객체 리터럴{}를 사용해서 생성하는 것이 더 간결해 보인다. </p>
+<h3 id="생성자-함수-1"><a href="#생성자-함수-1" class="headerlink" title="생성자 함수"></a>생성자 함수</h3><p>객체 리터럴은 간편하지만, 단 하나의 객체만을 생성한다. 혹시 여러 프로퍼티를 지닌 동일한 형태의 객체를 여러개 생성하는 경우에 객체 리터럴은 그다지 좋은 방법은 아니다.</p>
+<p>객체의 각 프로퍼티 값은 달라질 수 있으나 그 안의 메소드는 동작하는 방식이 같으므로 같은 것을 여러개 작성하는 것은 비효율 적이다.</p>
+<p>생성자 함수에 의한 객체 생성 방식은 마치 객체(인스턴스)를 생성하기 위한 하나의 템플릿처럼 생성자 함수를 사용하여 프로퍼티 구조가 동일한 객체 여러 개를 간편하게 생성할 수 있다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 생성자 함수</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Circle</span>(<span class="params">radius</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 생성자 함수 내부의 this는 생성자 함수가 생성할 인스턴스를 가리킨다.</span></span><br><span class="line">  <span class="built_in">this</span>.radius = radius;</span><br><span class="line">  <span class="built_in">this</span>.getDiameter = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span> * <span class="built_in">this</span>.radius;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 인스턴스의 생성</span></span><br><span class="line"><span class="keyword">const</span> circle1 = <span class="keyword">new</span> Circle(<span class="number">5</span>);  <span class="comment">// 반지름이 5인 Circle 객체를 생성</span></span><br><span class="line"><span class="keyword">const</span> circle2 = <span class="keyword">new</span> Circle(<span class="number">10</span>); <span class="comment">// 반지름이 10인 Circle 객체를 생성</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(circle1.getDiameter()); <span class="comment">// 10</span></span><br><span class="line"><span class="built_in">console</span>.log(circle2.getDiameter()); <span class="comment">// 20</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="this"><a href="#this" class="headerlink" title="this"></a>this</h4><p>자바스크립트의 스코프는 정적스코프 ( 렉시컬 스코프 ) - 함수가 정의된 환경에 따라 스코프가 결정됨   </p>
+<p>로 스코프를 결정한다.</p>
+<p>그러나 this는 해당 키워드를 사용하는 함수를 어떻게 사용하느냐에 따라 가르키는 값이 다르다.</p>
+<p>우선 this는 키워드인 객체라고 생각하자</p>
+<p>this는 함수 호출 방식에 따라 식별하는 객체가 다른데</p>
+<ul>
+<li>일반 호출</li>
+<li>메소드 내부 호출</li>
+<li>인스턴스 호출</li>
+</ul>
+<p>일반 함수로서 this를 호출하면 window객체를 가르킨다 ( 일부러 이렇게 하는 법은 없으므로 꼭 지양할 것 )</p>
+<p>일반 객체 내부에서 this를 호출하면 this는 객체를 가르킨다.</p>
+<p>생성자 함수 내부에서 this를 호출하면 this는 해당 생성자 함수가 생성하는 객체를 가르킨다.</p>
+<h2 id="생성자-함수-gt-인스턴스"><a href="#생성자-함수-gt-인스턴스" class="headerlink" title="생성자 함수 -&gt; 인스턴스"></a>생성자 함수 -&gt; 인스턴스</h2><p>암묵적으로 빈 객체가 생성된다. 이 빈 객체가 생성자 함수가 생성한 인스턴스다.</p>
+<p>그리고 <strong>암묵적으로</strong> <strong>생성된 빈 객체, 즉 인스턴스는 this에 바인딩된다.</strong> 생성자 함수 내부의 this가 생성자 함수가 생성할 인스턴스를 가리키는 이유가 바로 이것이다. 이 처리는 함수 몸체의 코드가 한 줄씩 실행되는 <strong>런타임 이전에 실행된다.</strong></p>
+<p>런타임 이전에 빈객체가 만들어지고 this에 이 빈객체가 바인딩된 다음에는</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Circle</span>(<span class="params">radius</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 암묵적으로 인스턴스가 생성되고 this에 바인딩된다.</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">//this에 바인딩되어 있는 인스턴스를 초기화한다.</span></span><br><span class="line">  <span class="built_in">this</span>.radius = radius;</span><br><span class="line">  <span class="built_in">this</span>.getDiameter = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span> * <span class="built_in">this</span>.radius;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>위의 처럼 빈 객체의 프로퍼티를 정의한다.</p>
+<p>생성자 함수는 암묵적으로 생성된 빈객체가 바인딩된 this가 암묵적으로 반환된다.</p>
+<p>만약에 명시적으로 원시값을 반환하면 그 반환은 무시되고 this가 반환된다.</p>
+<h3 id="Call-Construct"><a href="#Call-Construct" class="headerlink" title="Call / Construct"></a>Call / Construct</h3><p>함수 선언문 또는 함수 표현식으로 정의한 함수는 일반적인 함수로서 호출할 수 있는 것은 물론 생성자 함수로서 호출할 수 있다. </p>
+<p>생성자 함수로서 호출한다는 것은 new 연산자와 함께 호출하여 객체를 생성하는 것을 의미한다.</p>
+<p>함수는 객체이므로 일반 객체와 마찬가지로 내부 슬록, 내부 메서드를 가진다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 함수는 객체이므로 프로퍼티를 소유할 수 있다.</span></span><br><span class="line">foo.prop = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 함수는 객체이므로 메서드를 소유할 수 있다.</span></span><br><span class="line">foo.method = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">this</span>.prop);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>일반 객체와 달리 함수는 호출할 수도 있다.</p>
+<p>함수 객체는 일반 객체가 가지고 있는 내부 슬롯과 내부 메서드는 물론, 함수로서 동작하기 위해 함수 객체만을 위한 [[[Environment]], [[FormalParameters]] 등의 내부 슬롯과 [[Call]], [[Construct]] 같은 내부 메서드를 추가로 가지고 있다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 일반적인 함수로서 호출: [[Call]]이 호출된다.</span></span><br><span class="line">foo();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 생성자 함수로서 호출: [[Construct]]가 호출된다.</span></span><br><span class="line"><span class="keyword">new</span> foo();</span><br></pre></td></tr></table></figure>
+
+<p>그러나 모든 함수가 생성자 함수로 동작하는 것은 아니다.</p>
+<p>es6의 축약 표현으로 구현한 메소드나 화살표 함수는 생성자 함수로 기능하지 못한다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 화살표 함수 정의</span></span><br><span class="line"><span class="keyword">const</span> arrow = <span class="function">() =&gt;</span> &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> arrow(); <span class="comment">// TypeError: arrow is not a constructor</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 메서드 정의: ES6의 메서드 축약 표현만을 메서드로 인정한다.</span></span><br><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  x() &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> obj.x(); <span class="comment">// TypeError: obj.x is not a constructor</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1225,99 +1332,6 @@
 <p>width : 0 ; height : 0 처럼 너비, 높이가 0이어도 인식하지 못한다.</p>
 <p>border-left: 2px solid rgba(255,255,255, 0.5); - </p>
 <p>​                                      선 이름 영역에 rgba() 함수를 사용하여 불투명 선을 주는 것도 가능</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://parksaneon.github.io/2020/08/24/ARIA-float/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Park facamp">
-      <meta itemprop="description" content="All Dev stories">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Park facamp's blog">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/24/ARIA-float/" class="post-title-link" itemprop="url">ARIA & float</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-08-24 16:28:12 / Modified: 16:28:25" itemprop="dateCreated datePublished" datetime="2020-08-24T16:28:12+09:00">2020-08-24</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="ARIA"><a href="#ARIA" class="headerlink" title="ARIA"></a>ARIA</h2><p><strong>접근가능한 리치 인터넷 어플리케이션</strong>(Accessible Rich Internet Applications, <strong>ARIA</strong>)</p>
-<p>장애를 가진 사용자가 웹 콘텐츠와 웹 어플리케이션에 더 쉽게 접근할 수 있는 방법을 정의하는 여러 특성을 가르킨다.</p>
-<p>ARIA는 HTML을 보충해 사용자에게 추가적인 정보를 제공한다.</p>
-<p>ARIA 속성을 사용한다면  **여분의 레이블 및 설명 텍스트 **를 추가할 수 있다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button aria-label&#x3D;&quot;screen reader only label&quot;&gt;&lt;&#x2F;button&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>ARIA는 특정 영역을 제어하는 사용자설정 스크롤 바와 같은 표준 상위/하위 연결을 확장하는 <strong>요소 간의 의미 체계 관계</strong>를 표현할 수 있다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div role&#x3D;&quot;scrollbar&quot; aria-controls&#x3D;&quot;main&quot;&gt;&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="float"><a href="#float" class="headerlink" title="float"></a>float</h2><p>Float를 설정하면 기존의 BFC의 동작을 무시하고 새로운 BFC를 생성한다. line box 시스템을 이용하여 그려지게 되는데, 기존의 BFC에 영향을 받지 않기 때문에 떠있는 것 처럼 보여 속성 이름이 float가 되었다. </p>
-<p>이는 새로운 bfc의 시작이며, line-box는 float 속성을 가진 요소들만 관리하게 된다. 즉, flow요소와 아닌 요소가 같이 있다면 서로 다른 bfc에 존재한다는 것입니다.</p>
-<p>또한 돔구조에 관계없이 인라인 요소를 밀어내도록 작용하므로 block요소는 아래 이미지처럼 파란 영역은 float의 영향을 받고 밀려나지 않지만 그 안에 있는 텍스트 인라인 요소는 float에 밀려서 표현된 것을 알 수 있다.</p>
-<p><img src="https://media.vlpt.us/images/susu1991/post/4241c165-9d53-4306-9a1d-b6a36037cd4a/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202020-03-25%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%202.23.40.png" alt="img"></p>
-<p>line-box는 어느 방향이던, 그 방향의 마지막요소보다 더 그 방향쪽으로 나아갈 수 없으며 마지막 요소가 끝나는 지점부터 그려지기 시작한다.</p>
-<p>또 이미 그려진 영역은 새로운 요소가 그려질 영역에서 계산 제외되며, 수직방향의 기준은 가장 마지막 line-box 바로 아래에 그려진다.</p>
-<p>Block Box &gt; Line Box &gt; Inline Box</p>
-<p>부모 태그에 overflow : hidden속성을 주어 float된 자식의 높이값을 가지게 하는 것은 float 관련 문제의 해결방법중 하나다.( 권장 사항은 아니다 )</p>
-<p>float된 요소가 새로운 BFC를 생성하여 그곳에서 배치가 되는데 overflow hidden 역시 독자적으로 BFC를 생성한다. BFC는 자기의 자식은 포함하여 표현해야하는 책임을 가져 float된 자식이라도 높이 값을 인식하게 된다.</p>
-<p>( BFC 생성 시 line-box 의 경계를 인식하여 높이를 가진다라는 스펙또한 있음 )</p>
-<p>BFC는 자기의 자식은 포함하여 표현해야하는 책임은 있지만 그 안에서 새로운 BFC가 생성이 된다면 그 하위의 자식까지는 표현하지 않는다.</p>
-<h2 id="BFC-amp-IFC"><a href="#BFC-amp-IFC" class="headerlink" title="BFC &amp; IFC"></a>BFC &amp; IFC</h2><p>한줄을 어떻게 차지하는 지에 대한 차이에 따라 나눈다.</p>
-<h4 id="BFC-Block-Formatting-Context"><a href="#BFC-Block-Formatting-Context" class="headerlink" title="BFC(Block Formatting Context)"></a>BFC(Block Formatting Context)</h4><p>block 레벨 엘리먼트와 같이 요소를 세로로 배치하는 컨텍스트</p>
-<p>자신의 부모만큼의 너비를 가지며 안에 있는 블럭요소의 높이 만큼의 높이를 가진다. </p>
-<p>( width : 100% ; height : auto; )</p>
-<h4 id="IFC-Inline-Formatting-Context"><a href="#IFC-Inline-Formatting-Context" class="headerlink" title="IFC(Inline Formatting Context)"></a>IFC(Inline Formatting Context)</h4><p>inline 레벨 엘리먼트와 같이 요소를 가로로 배치하는 컨텍스트</p>
-<p>너비와 높이 모두 해당 inline태그의 content크기 만큼만 가진다. inline width의 합이 부모요소의 width 값을 넘었을 때 밑으로 떨어진다.</p>
-<p>( width : auto; height : auto; )</p>
-<p>BFC는 BFC영역에서 요소들을 세로 배치할 수 있도록 위치를 계산해 알려주고, IFC는 IFC영역에서 요소들을 가로로 배치할 수 있도록 위치를 계산해 알려주는 것이다.</p>
-<p>참고 자료</p>
-<p><a target="_blank" rel="noopener" href="https://www.bsidesoft.com/3634">https://www.bsidesoft.com/3634</a></p>
 
       
     </div>
