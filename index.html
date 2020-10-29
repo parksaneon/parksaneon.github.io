@@ -158,7 +158,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -190,6 +190,178 @@
       
 
       
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://parksaneon.github.io/2020/10/29/DOM/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Park facamp">
+      <meta itemprop="description" content="All Dev stories">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Park facamp's blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/29/DOM/" class="post-title-link" itemprop="url">DOM</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-10-29 15:37:03 / Modified: 15:39:00" itemprop="dateCreated datePublished" datetime="2020-10-29T15:37:03+09:00">2020-10-29</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Dom"><a href="#Dom" class="headerlink" title="Dom"></a>Dom</h1><p>dom : documnet object model 의 약자로 문서의 계층적인 구조를 나타낸다.</p>
+<h3 id="요소-vs-노드"><a href="#요소-vs-노드" class="headerlink" title="요소 vs 노드"></a>요소 vs 노드</h3><p>요소는 html 문서를 구성하는 태그를 나타낸다.</p>
+<p>이러한 요소는 html문서가 파싱되는 과정에서 요소 노드 객체로 변한다.</p>
+<p>html 태그(요소)는 요소노드, 어트리뷰트노드, 텍스트노드 등 3가지로 분리된다.</p>
+<ul>
+<li>요소노드(element node) : 태그(요소) 자체를 의미한다.</li>
+<li>어트리뷰트노드(attribute node) : html 태그의 속성이 변환된 노드로 위의 요소 노드와 형제 관계이다.</li>
+<li>텍스트노드(text node) : 태그의 텍스트로 요소 노드의 자식 요소로 할당된다.</li>
+</ul>
+<p>노드는 위의 3가지 말고도 1가지를 더하여 총 4가지가 존재한다.</p>
+<ul>
+<li><p>문서 노드 : DOM 트리의 최상위에 존재하는 루트 노드로 Document 객체를 가르킨다.</p>
+<p>​ 모든 노드는 Document 노드를 거쳐 찾을 수 밖에 없다.</p>
+</li>
+</ul>
+<p>위의 4가지(모든) 노드 객체는 Object, EventTarget, Node 인터페이스를 상속받는다.</p>
+<ul>
+<li>Object : 객체</li>
+<li>EventTarget : 이벤트를 발생시키는 객체</li>
+<li>Node : 트리 구조를 구성하는 노드 객체</li>
+</ul>
+<p>노드 객체는 각자 개별적으로 가진 기능이 있고 공통적으로 가지는 기능이 있다.</p>
+<p>모든 노드 객체는 이벤트를 발생시킬 수 있어 EventTarget을 상속받는다.</p>
+<h3 id="요소-노드-취득"><a href="#요소-노드-취득" class="headerlink" title="요소 노드 취득"></a>요소 노드 취득</h3><p>요소 노드 취득 관련 메서드는 HTMLCollection과 NodeList 반환 값으로 나눌 수 있다.</p>
+<p>HTMLCollection는 살아 있는 객체라고 표현하는데 실시간으로 바뀐 요소 노드를 반영한다.</p>
+<p>NodeList는 실시간으로 요소 노드를 반영하는 객체가 아닌, 과거의 정적인 상태를 유지한다.</p>
+<p>그러나 childNode로 반환하는 객체는 NodeList이면서 살아 있는 객체이므로 주의해야한다.</p>
+<p>getElementById 는 고유한 id값을 가진 요소노드만을 반환하고,</p>
+<p>querySelector는 인수로 전달한 css 선택자 조건에 맞는 요소 노드 하나만을 반환한다.</p>
+<p>getElementsByTagName , getElementsByClassName 등은 HTMLCollection 객체를 반환한다.</p>
+<p>querySelectorAll 는 NodeList 객체를 반환한다.</p>
+<h3 id="노드-탐색"><a href="#노드-탐색" class="headerlink" title="노드 탐색"></a>노드 탐색</h3><p>취득한 요소 노드를 기점으로 부모, 자식, 형제 노드를 찾는 것을 노드 탐색이라고 한다.</p>
+<p>이때 어트리뷰트 노드는 요소 노드와 형제이기는 하나 요소 노드의 부모와 연결되어 있지는 않다.</p>
+<p>때문에 Dom 트리 상에서는 형제관계가 반영되지 않으므로 주의해야 한다.</p>
+<h4 id="자식-노드-탐색"><a href="#자식-노드-탐색" class="headerlink" title="자식 노드 탐색"></a>자식 노드 탐색</h4><p>텍스트 노드 포함 탐색</p>
+<ul>
+<li>childNodes</li>
+<li>firstChild</li>
+<li>lastChild</li>
+</ul>
+<p>요소 노드만 탐색</p>
+<ul>
+<li>children</li>
+<li>firstElementChild</li>
+<li>lastElementChild</li>
+</ul>
+<p>자식 노드가 존재하는지 확인하려면 hasChildNodes 를 사용하면 되지만 텍스트 노드도 폼함하여 탐색하므로</p>
+<p>요소노드만을 검색할 것이라면 children 을 사용해야 한다.</p>
+<h4 id="부모-노드-탐색"><a href="#부모-노드-탐색" class="headerlink" title="부모 노드 탐색"></a>부모 노드 탐색</h4><p>parentNode 를 사용하며 텍스트 노드는 자식 노드가 없는 Leaf Node, 즉 나뭇잎 같은 존재이므로 부모노드가 텍스트 노드인 경우는 없다.</p>
+<h4 id="형제-노드-탐색"><a href="#형제-노드-탐색" class="headerlink" title="형제 노드 탐색"></a>형제 노드 탐색</h4><p>어트리뷰트 노드는 요소 노드의 형제 노드이지만 <strong>부모 노드가 같은 형제 노드가 아니기 때문에 반환되지 않는다.</strong> 즉, 아래 프로퍼티는 텍스트 노드 또는 요소 노드만 반환한다.</p>
+<p>여기서 텍스트 노드는 enter 키로 줄바꿈해서 생긴 공백 텍스트 노드를 의미한다.</p>
+<p>텍스트 노드 포함 탐색</p>
+<ul>
+<li>previousSibling</li>
+<li>nextSibling</li>
+</ul>
+<p>요소 노드만 탐색</p>
+<ul>
+<li>previousElementSibling</li>
+<li>nextElementSibling</li>
+</ul>
+<p>insertAdjacentHTML : 기존 요소를 제거하지 않고 위치를 지정해 새로운 요소를 삽입</p>
+<p>노드 이동</p>
+<p>추가</p>
+<ul>
+<li><p>appendChild : 마지막 노드 추가</p>
+</li>
+<li><p>insertBefore(newNode, childNode) : 첫 번째 인수로 전달받은 노드를 두 번째 인수로 전달받은 노드 앞에 추가</p>
+<p>복사</p>
+</li>
+<li><p>cloneNode([deep: true | false]) : 노드 복사 메서드로 true면 자손 노드를 포함해 복사하고 false(기본값) 라면 해당 노 드만 복사한다. 자손 노드를 복사하지 않으므로 텍스트 노드도 없다.</p>
+<p>교체</p>
+</li>
+<li><p>replaceChild(newChild, oldChild) : 자신을 호출한 노드의 자식 노드를 다른 노드로 교체한다.</p>
+<p>삭제</p>
+</li>
+<li><p>removeChild(child) : 인수로 전달한 노드를 DOM에서 삭제한다. 이때 인수로 전달한 노드는 removeChild 메서드를 호출한 노드의 자식 노드이어야 한다.</p>
+</li>
+</ul>
+<h3 id="attributes-초기-값만-세팅"><a href="#attributes-초기-값만-세팅" class="headerlink" title="attributes ( 초기 값만 세팅 )"></a>attributes ( 초기 값만 세팅 )</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input id=<span class="string">&quot;user&quot;</span> type=<span class="string">&quot;text&quot;</span> value=<span class="string">&quot;ungmo2&quot;</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<p>모든 HTML 요소에서 공통적으로 사용할 수 있지만 특정 HTML 요소에만 한정적으로 사용 가능한 어트리뷰트도 있다.</p>
+<p>id, class, style 속은 모든 태그가 사용이 가능하지만, 위의 input 태그만이 type, value 등 독자적으로 가지는 속성도 존재한다.</p>
+<p>HTML 문서가 파싱될 때 HTML 요소의 속성은 어트리뷰트 노드로 변환되어 요소 노드의 형제 노드로 추가된다.</p>
+<p>이때 HTML 속성당 하나의 어트리뷰트 노드가 생성된다. 즉, 위 input 요소는 3개의 속성 있으므로 3개의 어트리뷰트 노드가 생성된다.</p>
+<p>모든 어트리뷰트 노드의 참조는 유사 배열 객체이자 이터러블인 NamedNodeMap 객체에 담겨서 요소 노드의 attributes 프로퍼티에 저장된다.</p>
+<p>attributes 프로퍼티는 읽기 전용 접근자 프로퍼티(getter) 이며 변경이 불가능하다.</p>
+<p>getAttribute / setAttribute 를 사용하면 attributes를 통하지 않아도 속성 값을 얻거나 재할당할 수 있다.</p>
+<p>HTML 문서가 파싱 -&gt; HTML 요소의 속성당 어트리브튜 노드로 변환 -&gt; 요소 노드의 attributes 프로퍼티에 유사 배열 객체이자 이터러블인 NamedNodeMap 객체에 담겨 저장</p>
+<h3 id="DOM-프로퍼티-최신-속성값-상태-유지"><a href="#DOM-프로퍼티-최신-속성값-상태-유지" class="headerlink" title="DOM 프로퍼티 ( 최신 속성값 상태 유지)"></a>DOM 프로퍼티 ( 최신 속성값 상태 유지)</h3><p>요소 노드 객체에는 HTML 어트리뷰트에 대응하는 프로퍼티가 존재하는데 이를 <strong>DOM 프로퍼티</strong> 라고 한다.</p>
+<p>DOM 프로퍼티들은 HTML 어트리뷰트 값을 초기값으로 가지고 있다.</p>
+<p>DOM 프로퍼티는 setter와 getter 모두 존재하는 접근자 프로퍼티이므로 DOM 프로퍼티는 참조와 변경이 가능하다.</p>
+<p>html 태그(요소)의 속성은 요소노드의 attribute 프로퍼티와 dom 프로퍼티는 중복으로 관리되는 것처럼 보인다.</p>
+<ol>
+<li>요소 노드의 attributes 프로퍼티에서 관리하는 어트리뷰트 노드</li>
+<li>HTML 어트리뷰트에 대응하는 요소 노드의 프로퍼티(DOM 프로퍼티)</li>
+</ol>
+<p>그러나 엄연히 다르다.</p>
+<p>처음에 태그가 요소노드로 파싱되고 해당 태그의 속성이 어트리뷰트 노드로 변환되어 요소 노드의 attributes 프로퍼티에 저장된다.</p>
+<p>이와는 별도로 태그의 속성 값은 요소 노드의 dom 프로퍼티에 할당된다.</p>
+<p><strong>요소 노드는 상태(state)를 가지고 있다.</strong></p>
+<p>attributes 노드에서 관리하는 어트리뷰트 값은 사용자의 입력에 의해 상태가 변경되어도 변하지 않고 HTML 어트리뷰트로 지정한 HTML 요소의 <strong>초기 상태를 그대로 유지</strong>한다.( 즉 초기 상태 값이다. )</p>
+<p><strong>반면에</strong></p>
+<p>사용자가 입력한 최신 상태는 HTML 어트리뷰트에 대응하는 요소 노드의 DOM 프로퍼티가 관리한다. DOM 프로퍼티는 사용자의 입력에 의한 상태 변화에 반응하여 언제나 <strong>최신 상태를 유지</strong>한다.</p>
+<p>이처럼 attributes 프로퍼티는 HTML 요소의 초기 상태 값을 관리하고</p>
+<p>DOM 프로퍼티는 사용자의 입력에 의해 변경되는 최신 상태를 관리한다.</p>
+<h3 id="html-속성에-대한-Dom-프로퍼티-대응"><a href="#html-속성에-대한-Dom-프로퍼티-대응" class="headerlink" title="html 속성에 대한 Dom 프로퍼티 대응"></a>html 속성에 대한 Dom 프로퍼티 대응</h3><p>id, value(input) 등은 동일한 이름의 Dom 프로퍼티가 존재한다.</p>
+<p>그러나 몇몇의 속성은 Dom 프로퍼티와 이름이 같지 않거나 아예 없다.</p>
+<ul>
+<li><strong>class</strong> 속성은 Dom 프로퍼티의 className, classList 로 대응한다.</li>
+<li><strong>for</strong> 어트리뷰트는 htmlFor 프로퍼티와 1:1 대응한다.</li>
+<li>td 요소의 <strong>colspan</strong> 어트리뷰트는 대응하는 프로퍼티가 존재하지 않는다.</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1059,126 +1231,6 @@
 
 <p>삼항연산자를 이용한 풀이</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">toWeirdCase</span>(<span class="params">s</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> string = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">    <span class="keyword">let</span> stringArr = s.split(<span class="string">&quot; &quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; stringArr.length; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt;= stringArr[i].length; j++) &#123;</span><br><span class="line">            string += stringArr[i].length === j ? <span class="string">&#x27; &#x27;</span></span><br><span class="line">                    : j % <span class="number">2</span> === <span class="number">0</span> ? stringArr[i][j].toUpperCase()</span><br><span class="line">                    : stringArr[i][j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> string;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(toWeirdCase(<span class="string">&#x27;hello world&#x27;</span>));    <span class="comment">// &#x27;HeLlO WoRlD&#x27;</span></span><br><span class="line"><span class="built_in">console</span>.log(toWeirdCase(<span class="string">&#x27;my name is lee&#x27;</span>)); <span class="comment">// &#x27;My NaMe Is LeE&#x27;</span></span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://parksaneon.github.io/2020/09/20/property-attribute/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Park facamp">
-      <meta itemprop="description" content="All Dev stories">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Park facamp's blog">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/20/property-attribute/" class="post-title-link" itemprop="url">property attribute</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-09-20 12:13:38 / Modified: 14:09:48" itemprop="dateCreated datePublished" datetime="2020-09-20T12:13:38+09:00">2020-09-20</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="프로퍼티-어트리뷰트"><a href="#프로퍼티-어트리뷰트" class="headerlink" title="프로퍼티 어트리뷰트"></a>프로퍼티 어트리뷰트</h1><h3 id="내부-슬롯-내부-메서드"><a href="#내부-슬롯-내부-메서드" class="headerlink" title="내부 슬롯 / 내부 메서드"></a>내부 슬롯 / 내부 메서드</h3><p>ECMAScript 사양에서 사용하는 의사 프로퍼티(pseudo property)와 의사 메서드(pseudo method)이다. ECMAScript 사양에 등장하는 **이중 대괄호([[…]])**로 감싼 이름들이 내부 슬롯과 내부 메서드다.</p>
-<p>내부 슬롯과 내부 메서드는 ECMAScript 사양에 정의된 대로 구현되어 자바스크립트 엔진에서 실제로 동작하지만 개발자가 직접 접근할 수 있도록 외부로 공개된 객체의 프로퍼티는 아니다.</p>
-<p>내부 슬롯과 내부 메서드는 <strong>자바스크립트 엔진의 내부 로직</strong>이므로 원칙적으로 자바스크립트는 내부 슬롯과 내부 메서드에 직접적으로 접근하거나 호출할 수 있는 방법을 제공하지 않는다. 단, <strong>일부 내부 슬롯과 내부 메서드에 한하여 간접적으로 접근할 수 있는 수단을 제공</strong>하기는 한다.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> o = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 내부 슬롯은 자바스크립트 엔진의 내부 로직이므로 직접 접근할 수 없다.</span></span><br><span class="line">o.[[Prototype]] <span class="comment">// -&gt; Uncaught SyntaxError: Unexpected token &#x27;[&#x27;</span></span><br><span class="line"><span class="comment">// 단, 일부 내부 슬롯과 내부 메서드에 한하여 간접적으로 접근할 수 있는 수단을 제공하기는 한다.</span></span><br><span class="line">o.__proto__ <span class="comment">// -&gt; Object.prototype</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="프로퍼티-어트리뷰트-프로퍼티-디스크립터-객체"><a href="#프로퍼티-어트리뷰트-프로퍼티-디스크립터-객체" class="headerlink" title="프로퍼티 어트리뷰트 / 프로퍼티 디스크립터 객체"></a>프로퍼티 어트리뷰트 / 프로퍼티 디스크립터 객체</h3><p><strong>프로퍼티 어트리뷰트(PropertyAttribute)</strong> : 해당 객체의 상태 </p>
-<p><strong>프로퍼티 디스크립터(PropertyDescriptor) 객체</strong> : 해당 객체에 대한 설명 정보를 제공하는 객체 ( 프로퍼티 어트리뷰트 정보를 포함한다 )</p>
-<p>자바스크립트 엔진은 <strong>프로퍼티를 생성할 때</strong> <strong>프로퍼티의 상태를 나타내는 프로퍼티 어트리뷰트를 기본값으로 자동 정의</strong>한다. </p>
-<p>프로퍼티의 상태란 프로퍼티의 값(value), 값의 갱신 가능 여부(writable), 열거 가능 여부(enumerable), 재정의 가능 여부(configurable)를 말한다.</p>
-<p> 프로퍼티 어트리뷰트에 직접 접근할 수 없지만 Object.getOwnPropertyDescriptor 메서드를 사용하여 간접적으로 확인할 수는 있다.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> person = &#123;</span><br><span class="line">  name: <span class="string">&#x27;Lee&#x27;</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 프로퍼티 어트리뷰트 정보를 제공하는 프로퍼티 디스크립터 객체를 반환한다.</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getOwnPropertyDescriptor(person, <span class="string">&#x27;name&#x27;</span>));</span><br><span class="line"><span class="comment">// &#123;value: &quot;Lee&quot;, writable: true, enumerable: true, configurable: true&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>Object.getOwnPropertyDescriptor 메서드는 프로퍼티 어트리뷰트 정보를 제공하는 <strong>프로퍼티 디스크립터(PropertyDescriptor) 객체</strong>를 반환한다.</p>
-<p>만약 존재하지 않는 프로퍼티나 상속받은 프로퍼티에 대한 프로퍼티 디스크립터를 요구하면 undefined가 반환된다.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> person = &#123;</span><br><span class="line">  name: <span class="string">&#x27;Lee&#x27;</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 프로퍼티 동적 생성</span></span><br><span class="line">person.age = <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 모든 프로퍼티의 프로퍼티 어트리뷰트 정보를 제공하는 프로퍼티 디스크립터 객체들을 반환한다.</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getOwnPropertyDescriptors(person));</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">  name: &#123;value: &quot;Lee&quot;, writable: true, enumerable: true, configurable: true&#125;,</span></span><br><span class="line"><span class="comment">  age: &#123;value: 20, writable: true, enumerable: true, configurable: true&#125;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-
-<p>Object.getOwnPropertyDescriptor 메서드는 하나의 프로퍼티에 대해 프로퍼티 디스크립터 객체를 반환하지만 ES8에서 도입된 Object.getOwnPropertyDescriptors 메서드는 모든 프로퍼티의 프로퍼티 어트리뷰트 정보를 제공하는 프로퍼티 디스크립터 객체들을 반환한다.</p>
-<h3 id="데이터-프로퍼티-접근자-프로퍼티"><a href="#데이터-프로퍼티-접근자-프로퍼티" class="headerlink" title="데이터 프로퍼티 / 접근자 프로퍼티"></a>데이터 프로퍼티 / 접근자 프로퍼티</h3><p>데이터 프로퍼티(data property) : <strong>키와 값으로 구성</strong>된 일반적인 프로퍼티다. 지금까지 살펴본 모든 프로퍼티는 데이터 프로퍼티다.</p>
-<p>접근자 프로퍼티(accessor property) : 자체적으로는 값을 갖지 않고 <strong>다른 데이터 프로퍼티의 값을 읽거나 저장할 때 호출되는 접근자 함수로                                                                  구성된 프로퍼티다.</strong></p>
-<h4 id="데이터-프로퍼티"><a href="#데이터-프로퍼티" class="headerlink" title="데이터 프로퍼티"></a>데이터 프로퍼티</h4><p>데이터 프로퍼티(data property)는 다음과 같은 프로퍼티 어트리뷰트를 갖는다. 이 프로퍼티 어트리뷰트는 자바스크립트 엔진이 프로퍼티를 생성할 때 기본값으로 자동 정의된다.</p>
-<ul>
-<li>[[Value]], : 프로퍼티 키를 통해 프로퍼티 <strong>값</strong>에 접근하면 반환되는 값이다.</li>
-<li>[[Writable]] : 프로퍼티 값의 <strong>변경 가능 여부</strong>를 나타내며 불리언 값을 갖는다.</li>
-<li>[[Enumerable]] :  프로퍼티의 <strong>열거 가능 여부</strong>를 나타내며 불리언 값을 갖는다.</li>
-<li>[[Configurable]]: 프로퍼티의 <strong>재정의 가능 여부</strong>를 나타내며 불리언 값을 갖는다.</li>
-</ul>
-<p>위의 프로퍼티 어트리뷰트들은  프로퍼티 디스크립터 객체에서 value, writable, enumerable, configurable 프로퍼티로 제공된다.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> person = &#123;</span><br><span class="line">  name: <span class="string">&#x27;Lee&#x27;</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 프로퍼티 어트리뷰트 정보를 제공하는 프로퍼티 디스크립터 객체를 취득한다.</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getOwnPropertyDescriptor(person, <span class="string">&#x27;name&#x27;</span>));</span><br><span class="line"><span class="comment">// &#123;value: &quot;Lee&quot;, writable: true, enumerable: true, configurable: true&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p> 프로퍼티가 생성될 때 [[Value]]의 값은 프로퍼티 값으로 초기화되며 [[Writable]], [[Enumerable]], [[Configurable]]의 값은 true로 초기화된다. </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 프로퍼티 동적 생성</span></span><br><span class="line">person.age = <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getOwnPropertyDescriptors(person));</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">  name: &#123;value: &quot;Lee&quot;, writable: true, enumerable: true, configurable: true&#125;,</span></span><br><span class="line"><span class="comment">  age: &#123;value: 20, writable: true, enumerable: true, configurable: true&#125;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-
-<p>person 객체에 동적으로 프로퍼티를 추가하면 프로퍼티 디스크립터 객체는 이를 반영한다.</p>
-<h4 id="접근자-프로퍼티"><a href="#접근자-프로퍼티" class="headerlink" title="접근자 프로퍼티"></a>접근자 프로퍼티</h4><p>접근자 프로퍼티(accessor property)는 자체적으로는 값을 갖지 않고 다른 데이터 프로퍼티의 값을 읽거나 저장할 때 사용하는 접근자 함수(accessor function)로 구성된 프로퍼티다.</p>
-<ul>
-<li>[[Get]] : 접근자 프로퍼티를 통해 데이터 프로퍼티의 값을 읽을 때 호출되는 접근자 함수</li>
-<li>[[Set]] : 접근자 프로퍼티를 통해 데이터 프로퍼티의 값을 저장할 때 호출되는 접근자 함수</li>
-<li>[[Enumerable]] : 데이터 프로퍼티의 [[Enumerable]]과 같다.</li>
-<li>[[Configurable]] :  데이터 프로퍼티의 [[Configurable]]과 같다.</li>
-</ul>
-<p>접근자 함수는 getter/setter 함수라고도 부른다. 접근자 프로퍼티는 getter와 setter 함수를 모두 정의할 수도 있고 하나만 정의할 수도 있다. </p>
-<p><strong>프로토타입(prototype)</strong></p>
-<p>프로토타입은 어떤 객체의 상위(부모) 객체의 역할을 하는 객체다. 프로토타입은 하위(자식) 객체에게 자신의 프로퍼티와 메서드를 상속한다. 프로토타입 객체의 프로퍼티나 메서드를 상속받은 하위 객체는 자신의 프로퍼티 또는 메서드인 것처럼 자유롭게 사용할 수 있다.<br>프로토타입 체인은 프로토타입이 단방향 링크드 리스트 형태로 연결되어 있는 상속 구조를 말한다. 객체의 프로퍼티나 메서드에 접근하려고 할 때 해당 객체에 접근하려는 프로퍼티 또는 메서드가 없다면 프로토타입 체인을 따라 프로토타입의 프로퍼티나 메서드를 차례대로 검색한다.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 일반 객체의 __proto__는 접근자 프로퍼티다.</span></span><br><span class="line"><span class="built_in">Object</span>.getOwnPropertyDescriptor(<span class="built_in">Object</span>.prototype, <span class="string">&#x27;__proto__&#x27;</span>);</span><br><span class="line"><span class="comment">// &#123;get: ƒ, set: ƒ, enumerable: false, configurable: true&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 함수 객체의 prototype은 데이터 프로퍼티다.</span></span><br><span class="line"><span class="built_in">Object</span>.getOwnPropertyDescriptor(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;, <span class="string">&#x27;prototype&#x27;</span>);</span><br><span class="line"><span class="comment">// &#123;value: &#123;...&#125;, writable: true, enumerable: false, configurable: false&#125;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="프로퍼티-정의"><a href="#프로퍼티-정의" class="headerlink" title="프로퍼티 정의"></a>프로퍼티 정의</h3><p>새로운 프로퍼티를 추가하면서 프로퍼티 어트리뷰트를 <strong>명시적으로 정의</strong>하거나, 기존 프로퍼티의 프로퍼티 어트리뷰트를 <strong>재정의</strong>하는 것</p>
-<h3 id="객체-변경-금지"><a href="#객체-변경-금지" class="headerlink" title="객체 변경 금지"></a>객체 변경 금지</h3><ul>
-<li><p>객체 확장 금지 ( Object.preventExtensions ) </p>
-<p>프로퍼티 추가 금지</p>
-</li>
-<li><p>객체 밀봉 ( Object.seal )</p>
-<p>프로퍼티 추가 및 삭제와 프로퍼티 어트리뷰트 재정의 금지 / 프로퍼티 갱신만 가능 -&gt; 읽기와 쓰기만 가능</p>
-</li>
-<li><p>객체 동결 ( Object.freeze )</p>
-<p>프로퍼티 추가 및 삭제와 프로퍼티 어트리뷰트 재정의 금지, 프로퍼티 값 갱신 금지 -&gt; 읽기만 가능</p>
-</li>
-</ul>
-
       
     </div>
 

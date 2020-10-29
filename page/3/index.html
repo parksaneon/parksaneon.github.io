@@ -158,7 +158,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -190,6 +190,149 @@
       
 
       
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://parksaneon.github.io/2020/08/24/position-minus-margin/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Park facamp">
+      <meta itemprop="description" content="All Dev stories">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Park facamp's blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/24/position-minus-margin/" class="post-title-link" itemprop="url">position & minus margin</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-08-24 16:29:54 / Modified: 16:30:24" itemprop="dateCreated datePublished" datetime="2020-08-24T16:29:54+09:00">2020-08-24</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>content-box </p>
+<p>width 에 padding, border, margin을 모두 더하는 방식</p>
+<p>border-box</p>
+<p>width 에 padding, border까지 포함하여 적용되는 방식</p>
+<h2 id="Position"><a href="#Position" class="headerlink" title="Position"></a>Position</h2><p>static을 제외한 postion 속성 값 모두 offset 값으로 위치값을 지정해준다.</p>
+<p>-&gt; top, left, right, bottom</p>
+<p>postion 속성에서 static, relative 값들은 normal flow 흐름을 따라 가지만 absolute, fixed 등은 적용 즉시 레이어 라는 개념으로 컨텐츠 위로 뜬다.</p>
+<p>absoulte 값 지정시 offset값을 지정해주지 않으면 자신의 위치에서 위쪽으로 뜬다.</p>
+<h5 id="position-위치-기준"><a href="#position-위치-기준" class="headerlink" title="position 위치 기준"></a>position 위치 기준</h5><p>absolute : 부모 태그 중 static 을 제외한 postion값을 가진 부모 태그 기준</p>
+<p>relative : 자기 자신의 위치가 기준</p>
+<p>fixed : viewport 기준</p>
+<p>absoulte의 부모 태그에 relative 값을 주로 주는데 normal flow를 벗어나지 않으면서 위치값 지정이 가능하기 때문이다.</p>
+<h2 id="absolute와-float-비교"><a href="#absolute와-float-비교" class="headerlink" title="absolute와 float 비교"></a>absolute와 float 비교</h2><p>absolute와 float는 모두 normal flow를 벗어난다.</p>
+<h4 id="absolute"><a href="#absolute" class="headerlink" title="absolute"></a>absolute</h4><ul>
+<li>레이어이기 때문에 absolute 위에 absolute가 겹칠 수가 있다. ( z-index )</li>
+<li>논리적인 흐름상에 있는 line 속성 위에 떠 있을 때 line 속성을 가린다.</li>
+</ul>
+<h4 id="float"><a href="#float" class="headerlink" title="float"></a>float</h4><ul>
+<li><strong>보모 크기만큼의 line box</strong>가 생기면서 논리적인 흐름을 벗어나고, 레이어가 아니기때문에 absolute처럼 겹치지 않는다.</li>
+<li>논리적인 흐름상에 있는 inline 속성 위에 떠 있을 때 inline 속성을 밀어낸다. ( block 영역은 밀어내지 못함 )</li>
+</ul>
+<h3 id="Negative-Margin"><a href="#Negative-Margin" class="headerlink" title="Negative Margin"></a>Negative Margin</h3><p>margin은 padding과 달리 auto라는 값이나 음수 값을 가질 수 있다.</p>
+<p>block                                                                                                                                          유의미한 변화는 bold처리</p>
+<ul>
+<li><p><strong>block 이며 width가 auto 일 때</strong> </p>
+<p><strong>marin-top</strong> :값이 음수일 경우 - 수치 만큼 위치가 위쪽으로 이동한다. margin-bottom에 -값을 줬을 경우 아무 일도 일어나지 않는다.</p>
+<p><strong>magin-right</strong>나 <strong>margin-left</strong>에 - 값을 줬을 경우 - 값만큼 너비가 늘어난다.</p>
+<p>기본적으로 block은 width값이 auto라서 부모크기 만큼의 width가 설정되는데 right나 left에 - 값을 주면 수평선 상으로 시작하는 지점이나, 끝나는 지점을 속여 바뀐 위치에서 width가 100%로 되는 것</p>
+</li>
+</ul>
+<ul>
+<li><p><strong>block 이며 width가 고정 값일 때</strong></p>
+<p><strong>margin-top</strong> 에 -값을 줄 경우 위쪽으로 위치가 이동하며 bottom에는 줘도 아무 일도 일어나지 않는다.</p>
+<p>기본적으로 위치는 왼쪽 화면 끝에 고정되어 있는데 이때 right에다 -값을 줘도 역시 아무런 변화가 없다.</p>
+<p>단, <strong>left</strong>에 -를 주면 위치가 왼쪽으로 이동한다.</p>
+</li>
+</ul>
+<p>inline-block</p>
+<ul>
+<li>top, bottm은 - 값을 줘도 변화가 없고 <strong>left</strong>는 값을 주면 값이 왼쪽으로 일어난다.</li>
+<li><strong>left</strong>는 값을 줄 경우 형제 요소가 - 값만큼 왼쪽으로 이동한다. 이때 본인만 이동하는것이 아닌 수평 위치의 형제요소들도 왼쪽으로 같이 이동한다.</li>
+</ul>
+<p>float</p>
+<ul>
+<li><p><strong>top</strong>에 -값을 주면 위치가 위쪽으로 이동한다. bottm은 - 값을 줘도 변화가 없다.</p>
+<p><strong>left</strong>, <strong>right</strong>는 -값 적용시 inline-block 과 같이 동작한다.</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">float, inline 요소에 음수 right 마진을 사용하면 이 요소의 너비가 음수 마진 만큼 줄어들게 된다.</span><br><span class="line">* 그렇기 때문에 다음에 따라오는 요소가 끌려 가는 효과가 나타나게 된다.</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>abolute</p>
+<ul>
+<li>top, right, bottm 모두 변화가 없고 <strong>left</strong>에 - 값을 주면 왼쪽으로 이동한다.</li>
+</ul>
+<p>정리하면 nagative margin 은</p>
+<p>left ,right 등에 - 값 적용시 위치가 이동하는 것은 시작, 끝나는 원래 위치에서  수치만큼의 위치에서 시작, 끝나는 것으로 브라우저를 속인다고 생각하면 될 거 같다.</p>
+<p>( 수평선 상에서 )</p>
+<p>margin-left : 요소가 더 빨리 시작하도록 ( 브라우저를 속인다. )</p>
+<p>margin-right : 요소가 더 빨리 끝나도록 </p>
+<p>(수직 상에서)</p>
+<p>margin-top : 요소가 더 빨리 시작하도록 시작점을 속이는 것</p>
+<p>margin-bottom : 요소가 더 빨리 끝나도록  끝나는 지점을  속이는 것</p>
+<p>( - 값만큼 더 빨리 시작하거나, 빨리 끝난다는 것으로 생각하자 )</p>
+<p>예외적으로 block(width : auto;) 의 경우에는 magin-right나 margin-left에 - 값을 줬을 경우 - 값만큼 너비가 늘어난다. 이것은 blcok 요소는 기본적으로 widht값이 auto이기 때문에 부모크기 만큼 width가 설정되는데 </p>
+<p>marign right나 left에 - 값을 주면 수평선 상으로 시작하는 지점이나, 끝나는 지점을 속여 바뀐 위치에서 width가 100%로 되는 것으로 이해하자</p>
+<p>inline-block 에 아무런 내용이 없을 경우 vertical-align 속성 기본값이 baseline인 것에 따라 내용이 없는 것으로 인해 동작을 안하므로 vertical-align을 top, bottom 등 다른 속성값을 제공하거나 내용을 넣어주어야 원하는 대로 동작한다. </p>
+<p>inheritance ( 상속 )</p>
+<p>부모의 속성이 자식에게 상속되는 개념</p>
+<p>negative margin</p>
+<p>block 태그에 margin 속성값을 마이너스로 주면 너비가 그만큼 증가한다.</p>
+<p>form 관련</p>
+<p>a[href], area[href]</p>
+<p>tabindex = ‘0’</p>
+<p>aria-</p>
+<p>role =”button”</p>
+<p>button 태그는 type속성을 지정안하면 type=’submit’ 속성이 기본값으로 지정된다.</p>
+<p>display : none 속성의 태그는 스크린리더 등 보조기기기 인식하지 못한다.</p>
+<p>width : 0 ; height : 0 처럼 너비, 높이가 0이어도 인식하지 못한다.</p>
+<p>border-left: 2px solid rgba(255,255,255, 0.5); - </p>
+<p>​                                      선 이름 영역에 rgba() 함수를 사용하여 불투명 선을 주는 것도 가능</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   

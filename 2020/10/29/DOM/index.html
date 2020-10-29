@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"parksaneon.github.io","root":"/","scheme":"Muse","version":"8.0.0-rc.5","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false};
+  </script>
+
+  <meta name="description" content="Domdom : documnet object model 의 약자로 문서의 계층적인 구조를 나타낸다. 요소 vs 노드요소는 html 문서를 구성하는 태그를 나타낸다. 이러한 요소는 html문서가 파싱되는 과정에서 요소 노드 객체로 변한다. html 태그(요소)는 요소노드, 어트리뷰트노드, 텍스트노드 등 3가지로 분리된다.  요소노드(element node)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DOM">
+<meta property="og:url" content="http://parksaneon.github.io/2020/10/29/DOM/index.html">
+<meta property="og:site_name" content="Park facamp&#39;s blog">
+<meta property="og:description" content="Domdom : documnet object model 의 약자로 문서의 계층적인 구조를 나타낸다. 요소 vs 노드요소는 html 문서를 구성하는 태그를 나타낸다. 이러한 요소는 html문서가 파싱되는 과정에서 요소 노드 객체로 변한다. html 태그(요소)는 요소노드, 어트리뷰트노드, 텍스트노드 등 3가지로 분리된다.  요소노드(element node)">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-10-29T06:37:03.000Z">
+<meta property="article:modified_time" content="2020-10-29T06:39:00.204Z">
+<meta property="article:author" content="Park facamp">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://parksaneon.github.io/2020/10/29/DOM/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>DOM | Park facamp's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Park facamp's blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Dom"><span class="nav-number">1.</span> <span class="nav-text">Dom</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%9A%94%EC%86%8C-vs-%EB%85%B8%EB%93%9C"><span class="nav-number">1.0.1.</span> <span class="nav-text">요소 vs 노드</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%9A%94%EC%86%8C-%EB%85%B8%EB%93%9C-%EC%B7%A8%EB%93%9D"><span class="nav-number">1.0.2.</span> <span class="nav-text">요소 노드 취득</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%85%B8%EB%93%9C-%ED%83%90%EC%83%89"><span class="nav-number">1.0.3.</span> <span class="nav-text">노드 탐색</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%EC%9E%90%EC%8B%9D-%EB%85%B8%EB%93%9C-%ED%83%90%EC%83%89"><span class="nav-number">1.0.3.1.</span> <span class="nav-text">자식 노드 탐색</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EB%B6%80%EB%AA%A8-%EB%85%B8%EB%93%9C-%ED%83%90%EC%83%89"><span class="nav-number">1.0.3.2.</span> <span class="nav-text">부모 노드 탐색</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%ED%98%95%EC%A0%9C-%EB%85%B8%EB%93%9C-%ED%83%90%EC%83%89"><span class="nav-number">1.0.3.3.</span> <span class="nav-text">형제 노드 탐색</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#attributes-%EC%B4%88%EA%B8%B0-%EA%B0%92%EB%A7%8C-%EC%84%B8%ED%8C%85"><span class="nav-number">1.0.4.</span> <span class="nav-text">attributes ( 초기 값만 세팅 )</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM-%ED%94%84%EB%A1%9C%ED%8D%BC%ED%8B%B0-%EC%B5%9C%EC%8B%A0-%EC%86%8D%EC%84%B1%EA%B0%92-%EC%83%81%ED%83%9C-%EC%9C%A0%EC%A7%80"><span class="nav-number">1.0.5.</span> <span class="nav-text">DOM 프로퍼티 ( 최신 속성값 상태 유지)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#html-%EC%86%8D%EC%84%B1%EC%97%90-%EB%8C%80%ED%95%9C-Dom-%ED%94%84%EB%A1%9C%ED%8D%BC%ED%8B%B0-%EB%8C%80%EC%9D%91"><span class="nav-number">1.0.6.</span> <span class="nav-text">html 속성에 대한 Dom 프로퍼티 대응</span></a></li></ol></li></ol></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Park facamp</p>
+  <div class="site-description" itemprop="description">All Dev stories</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://parksaneon.github.io/2020/10/29/DOM/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Park facamp">
+      <meta itemprop="description" content="All Dev stories">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Park facamp's blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          DOM
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-10-29 15:37:03 / Modified: 15:39:00" itemprop="dateCreated datePublished" datetime="2020-10-29T15:37:03+09:00">2020-10-29</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="Dom"><a href="#Dom" class="headerlink" title="Dom"></a>Dom</h1><p>dom : documnet object model 의 약자로 문서의 계층적인 구조를 나타낸다.</p>
+<h3 id="요소-vs-노드"><a href="#요소-vs-노드" class="headerlink" title="요소 vs 노드"></a>요소 vs 노드</h3><p>요소는 html 문서를 구성하는 태그를 나타낸다.</p>
+<p>이러한 요소는 html문서가 파싱되는 과정에서 요소 노드 객체로 변한다.</p>
+<p>html 태그(요소)는 요소노드, 어트리뷰트노드, 텍스트노드 등 3가지로 분리된다.</p>
+<ul>
+<li>요소노드(element node) : 태그(요소) 자체를 의미한다.</li>
+<li>어트리뷰트노드(attribute node) : html 태그의 속성이 변환된 노드로 위의 요소 노드와 형제 관계이다.</li>
+<li>텍스트노드(text node) : 태그의 텍스트로 요소 노드의 자식 요소로 할당된다.</li>
+</ul>
+<p>노드는 위의 3가지 말고도 1가지를 더하여 총 4가지가 존재한다.</p>
+<ul>
+<li><p>문서 노드 : DOM 트리의 최상위에 존재하는 루트 노드로 Document 객체를 가르킨다.</p>
+<p>​ 모든 노드는 Document 노드를 거쳐 찾을 수 밖에 없다.</p>
+</li>
+</ul>
+<p>위의 4가지(모든) 노드 객체는 Object, EventTarget, Node 인터페이스를 상속받는다.</p>
+<ul>
+<li>Object : 객체</li>
+<li>EventTarget : 이벤트를 발생시키는 객체</li>
+<li>Node : 트리 구조를 구성하는 노드 객체</li>
+</ul>
+<p>노드 객체는 각자 개별적으로 가진 기능이 있고 공통적으로 가지는 기능이 있다.</p>
+<p>모든 노드 객체는 이벤트를 발생시킬 수 있어 EventTarget을 상속받는다.</p>
+<h3 id="요소-노드-취득"><a href="#요소-노드-취득" class="headerlink" title="요소 노드 취득"></a>요소 노드 취득</h3><p>요소 노드 취득 관련 메서드는 HTMLCollection과 NodeList 반환 값으로 나눌 수 있다.</p>
+<p>HTMLCollection는 살아 있는 객체라고 표현하는데 실시간으로 바뀐 요소 노드를 반영한다.</p>
+<p>NodeList는 실시간으로 요소 노드를 반영하는 객체가 아닌, 과거의 정적인 상태를 유지한다.</p>
+<p>그러나 childNode로 반환하는 객체는 NodeList이면서 살아 있는 객체이므로 주의해야한다.</p>
+<p>getElementById 는 고유한 id값을 가진 요소노드만을 반환하고,</p>
+<p>querySelector는 인수로 전달한 css 선택자 조건에 맞는 요소 노드 하나만을 반환한다.</p>
+<p>getElementsByTagName , getElementsByClassName 등은 HTMLCollection 객체를 반환한다.</p>
+<p>querySelectorAll 는 NodeList 객체를 반환한다.</p>
+<h3 id="노드-탐색"><a href="#노드-탐색" class="headerlink" title="노드 탐색"></a>노드 탐색</h3><p>취득한 요소 노드를 기점으로 부모, 자식, 형제 노드를 찾는 것을 노드 탐색이라고 한다.</p>
+<p>이때 어트리뷰트 노드는 요소 노드와 형제이기는 하나 요소 노드의 부모와 연결되어 있지는 않다.</p>
+<p>때문에 Dom 트리 상에서는 형제관계가 반영되지 않으므로 주의해야 한다.</p>
+<h4 id="자식-노드-탐색"><a href="#자식-노드-탐색" class="headerlink" title="자식 노드 탐색"></a>자식 노드 탐색</h4><p>텍스트 노드 포함 탐색</p>
+<ul>
+<li>childNodes</li>
+<li>firstChild</li>
+<li>lastChild</li>
+</ul>
+<p>요소 노드만 탐색</p>
+<ul>
+<li>children</li>
+<li>firstElementChild</li>
+<li>lastElementChild</li>
+</ul>
+<p>자식 노드가 존재하는지 확인하려면 hasChildNodes 를 사용하면 되지만 텍스트 노드도 폼함하여 탐색하므로</p>
+<p>요소노드만을 검색할 것이라면 children 을 사용해야 한다.</p>
+<h4 id="부모-노드-탐색"><a href="#부모-노드-탐색" class="headerlink" title="부모 노드 탐색"></a>부모 노드 탐색</h4><p>parentNode 를 사용하며 텍스트 노드는 자식 노드가 없는 Leaf Node, 즉 나뭇잎 같은 존재이므로 부모노드가 텍스트 노드인 경우는 없다.</p>
+<h4 id="형제-노드-탐색"><a href="#형제-노드-탐색" class="headerlink" title="형제 노드 탐색"></a>형제 노드 탐색</h4><p>어트리뷰트 노드는 요소 노드의 형제 노드이지만 <strong>부모 노드가 같은 형제 노드가 아니기 때문에 반환되지 않는다.</strong> 즉, 아래 프로퍼티는 텍스트 노드 또는 요소 노드만 반환한다.</p>
+<p>여기서 텍스트 노드는 enter 키로 줄바꿈해서 생긴 공백 텍스트 노드를 의미한다.</p>
+<p>텍스트 노드 포함 탐색</p>
+<ul>
+<li>previousSibling</li>
+<li>nextSibling</li>
+</ul>
+<p>요소 노드만 탐색</p>
+<ul>
+<li>previousElementSibling</li>
+<li>nextElementSibling</li>
+</ul>
+<p>insertAdjacentHTML : 기존 요소를 제거하지 않고 위치를 지정해 새로운 요소를 삽입</p>
+<p>노드 이동</p>
+<p>추가</p>
+<ul>
+<li><p>appendChild : 마지막 노드 추가</p>
+</li>
+<li><p>insertBefore(newNode, childNode) : 첫 번째 인수로 전달받은 노드를 두 번째 인수로 전달받은 노드 앞에 추가</p>
+<p>복사</p>
+</li>
+<li><p>cloneNode([deep: true | false]) : 노드 복사 메서드로 true면 자손 노드를 포함해 복사하고 false(기본값) 라면 해당 노 드만 복사한다. 자손 노드를 복사하지 않으므로 텍스트 노드도 없다.</p>
+<p>교체</p>
+</li>
+<li><p>replaceChild(newChild, oldChild) : 자신을 호출한 노드의 자식 노드를 다른 노드로 교체한다.</p>
+<p>삭제</p>
+</li>
+<li><p>removeChild(child) : 인수로 전달한 노드를 DOM에서 삭제한다. 이때 인수로 전달한 노드는 removeChild 메서드를 호출한 노드의 자식 노드이어야 한다.</p>
+</li>
+</ul>
+<h3 id="attributes-초기-값만-세팅"><a href="#attributes-초기-값만-세팅" class="headerlink" title="attributes ( 초기 값만 세팅 )"></a>attributes ( 초기 값만 세팅 )</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input id=<span class="string">&quot;user&quot;</span> type=<span class="string">&quot;text&quot;</span> value=<span class="string">&quot;ungmo2&quot;</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<p>모든 HTML 요소에서 공통적으로 사용할 수 있지만 특정 HTML 요소에만 한정적으로 사용 가능한 어트리뷰트도 있다.</p>
+<p>id, class, style 속은 모든 태그가 사용이 가능하지만, 위의 input 태그만이 type, value 등 독자적으로 가지는 속성도 존재한다.</p>
+<p>HTML 문서가 파싱될 때 HTML 요소의 속성은 어트리뷰트 노드로 변환되어 요소 노드의 형제 노드로 추가된다.</p>
+<p>이때 HTML 속성당 하나의 어트리뷰트 노드가 생성된다. 즉, 위 input 요소는 3개의 속성 있으므로 3개의 어트리뷰트 노드가 생성된다.</p>
+<p>모든 어트리뷰트 노드의 참조는 유사 배열 객체이자 이터러블인 NamedNodeMap 객체에 담겨서 요소 노드의 attributes 프로퍼티에 저장된다.</p>
+<p>attributes 프로퍼티는 읽기 전용 접근자 프로퍼티(getter) 이며 변경이 불가능하다.</p>
+<p>getAttribute / setAttribute 를 사용하면 attributes를 통하지 않아도 속성 값을 얻거나 재할당할 수 있다.</p>
+<p>HTML 문서가 파싱 -&gt; HTML 요소의 속성당 어트리브튜 노드로 변환 -&gt; 요소 노드의 attributes 프로퍼티에 유사 배열 객체이자 이터러블인 NamedNodeMap 객체에 담겨 저장</p>
+<h3 id="DOM-프로퍼티-최신-속성값-상태-유지"><a href="#DOM-프로퍼티-최신-속성값-상태-유지" class="headerlink" title="DOM 프로퍼티 ( 최신 속성값 상태 유지)"></a>DOM 프로퍼티 ( 최신 속성값 상태 유지)</h3><p>요소 노드 객체에는 HTML 어트리뷰트에 대응하는 프로퍼티가 존재하는데 이를 <strong>DOM 프로퍼티</strong> 라고 한다.</p>
+<p>DOM 프로퍼티들은 HTML 어트리뷰트 값을 초기값으로 가지고 있다.</p>
+<p>DOM 프로퍼티는 setter와 getter 모두 존재하는 접근자 프로퍼티이므로 DOM 프로퍼티는 참조와 변경이 가능하다.</p>
+<p>html 태그(요소)의 속성은 요소노드의 attribute 프로퍼티와 dom 프로퍼티는 중복으로 관리되는 것처럼 보인다.</p>
+<ol>
+<li>요소 노드의 attributes 프로퍼티에서 관리하는 어트리뷰트 노드</li>
+<li>HTML 어트리뷰트에 대응하는 요소 노드의 프로퍼티(DOM 프로퍼티)</li>
+</ol>
+<p>그러나 엄연히 다르다.</p>
+<p>처음에 태그가 요소노드로 파싱되고 해당 태그의 속성이 어트리뷰트 노드로 변환되어 요소 노드의 attributes 프로퍼티에 저장된다.</p>
+<p>이와는 별도로 태그의 속성 값은 요소 노드의 dom 프로퍼티에 할당된다.</p>
+<p><strong>요소 노드는 상태(state)를 가지고 있다.</strong></p>
+<p>attributes 노드에서 관리하는 어트리뷰트 값은 사용자의 입력에 의해 상태가 변경되어도 변하지 않고 HTML 어트리뷰트로 지정한 HTML 요소의 <strong>초기 상태를 그대로 유지</strong>한다.( 즉 초기 상태 값이다. )</p>
+<p><strong>반면에</strong></p>
+<p>사용자가 입력한 최신 상태는 HTML 어트리뷰트에 대응하는 요소 노드의 DOM 프로퍼티가 관리한다. DOM 프로퍼티는 사용자의 입력에 의한 상태 변화에 반응하여 언제나 <strong>최신 상태를 유지</strong>한다.</p>
+<p>이처럼 attributes 프로퍼티는 HTML 요소의 초기 상태 값을 관리하고</p>
+<p>DOM 프로퍼티는 사용자의 입력에 의해 변경되는 최신 상태를 관리한다.</p>
+<h3 id="html-속성에-대한-Dom-프로퍼티-대응"><a href="#html-속성에-대한-Dom-프로퍼티-대응" class="headerlink" title="html 속성에 대한 Dom 프로퍼티 대응"></a>html 속성에 대한 Dom 프로퍼티 대응</h3><p>id, value(input) 등은 동일한 이름의 Dom 프로퍼티가 존재한다.</p>
+<p>그러나 몇몇의 속성은 Dom 프로퍼티와 이름이 같지 않거나 아예 없다.</p>
+<ul>
+<li><strong>class</strong> 속성은 Dom 프로퍼티의 className, classList 로 대응한다.</li>
+<li><strong>for</strong> 어트리뷰트는 htmlFor 프로퍼티와 1:1 대응한다.</li>
+<li>td 요소의 <strong>colspan</strong> 어트리뷰트는 대응하는 프로퍼티가 존재하지 않는다.</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/10/26/Array-HOF/" rel="prev" title="Array HOF">
+                  <i class="fa fa-chevron-left"></i> Array HOF
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Park facamp</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+      
+
+
+
+
+
+
+
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
