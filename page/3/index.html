@@ -158,7 +158,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -190,6 +190,395 @@
       
 
       
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://parksaneon.github.io/2020/09/10/not-gloval-variable/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Park facamp">
+      <meta itemprop="description" content="All Dev stories">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Park facamp's blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/10/not-gloval-variable/" class="post-title-link" itemprop="url">not gloval variable</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-09-10 09:41:47 / Modified: 09:43:11" itemprop="dateCreated datePublished" datetime="2020-09-10T09:41:47+09:00">2020-09-10</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="변수-생명주기"><a href="#변수-생명주기" class="headerlink" title="변수 생명주기"></a>변수 생명주기</h1><p>변수는 선언에 의해 생성되고 할당에 의해 값을 할당받는다. 그리고 사용이 끝난 변수는 소멸하는데 이를 생명주기라고 한다.</p>
+<p>생명주기가 없다면 변수는 종료를 하지 않는 한 메모리 공간을 계속 점유한다.</p>
+<p>전역변수는 웹 어플의 생명주기와 같고 지역변수는 해당 함수가 종료시에 같이 소멸한다. 이는 지역 함수는 함수가 호출되어 실행되는 동안만 생명주기가 유효하다는 의미다.</p>
+<h3 id="지역-변수"><a href="#지역-변수" class="headerlink" title="지역 변수"></a>지역 변수</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="string">&#x27;global&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(x); <span class="comment">// ①</span></span><br><span class="line">  <span class="keyword">var</span> x = <span class="string">&#x27;local&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo();</span><br><span class="line"><span class="built_in">console</span>.log(x); <span class="comment">// global</span></span><br></pre></td></tr></table></figure>
+
+<p>호이스팅은 전역 환경에서만 일어나는 것이 아니라, 지역(함수) 환경에서도 일어난다. 따라서 위의 foo 함수에서는 x라는 변수가 먼저 호이스팅 되므로 undefined가 출력된다.</p>
+<p>호이스팅은 스코프 단위로 일어난다.지역 변수의 호이스팅은 지역 변수의 선언이 지역 스코프의 선두로 끌어 올려진 것처럼 동작한다. 따라서 지역 변수는 함수 전체에서 유효하다. (변수의 선언이 해당 스코프의 선두로 올라간다는 의미) </p>
+<h3 id="전역-변수"><a href="#전역-변수" class="headerlink" title="전역 변수"></a>전역 변수</h3><p>지역변수에 비해 전역변수는 생명주기가 길다. 이것은 메모리 소비가 그만큼 높고, 지역 환경에서 전역 변수 검색시 가장 마지막에 검색이 되어 속도상의 차이도 분명이 존재한다.</p>
+<p>이를 방지하기 위해서, 전역대신 즉시실행함수를 이용하여 변수를 선언하거나 전역 환경에 객체를 생성하고 그 객체에 전역 변수처럼 사용할 변수들을 저장하는 방법등이 존재한다.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://parksaneon.github.io/2020/09/08/homework-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Park facamp">
+      <meta itemprop="description" content="All Dev stories">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Park facamp's blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/08/homework-1/" class="post-title-link" itemprop="url">homework 1</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-09-08 10:03:15" itemprop="dateCreated datePublished" datetime="2020-09-08T10:03:15+09:00">2020-09-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-09-10 09:39:05" itemprop="dateModified" datetime="2020-09-10T09:39:05+09:00">2020-09-10</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="homework-1"><a href="#homework-1" class="headerlink" title="homework 1"></a>homework 1</h1><h3 id="삼항연산자"><a href="#삼항연산자" class="headerlink" title="삼항연산자"></a>삼항연산자</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">11</span>;</span><br><span class="line"><span class="keyword">var</span> res;</span><br><span class="line"><span class="keyword">if</span> (x === <span class="number">0</span>) &#123;</span><br><span class="line">    res = <span class="string">&#x27;영&#x27;</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (x % <span class="number">2</span> === <span class="number">0</span>) &#123;</span><br><span class="line">    res = <span class="string">&#x27;짝수&#x27;</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    res = <span class="string">&#x27;홀수&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> res = x === <span class="number">0</span> ? <span class="string">&#x27;영&#x27;</span> : x % <span class="number">2</span> ? <span class="string">&#x27;홀수&#x27;</span> : <span class="string">&#x27;짝수&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="반복문"><a href="#반복문" class="headerlink" title="반복문"></a>반복문</h3><ol>
+<li>변수 x가 10보다 크고 20보다 작을 때 변수 x를 출력하는 조건식을 완성하라.</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">15</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (x &gt; <span class="number">10</span> &amp;&amp; x &lt; <span class="number">20</span>) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="2">
+<li>for문을 사용하여 0부터 10미만의 정수 중에서 짝수만을 작은 수부터 출력하시오.</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!(i % <span class="number">2</span>)) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="3">
+<li>for문을 사용하여 0부터 10미만의 정수 중에서 짝수만을 작은 수부터 문자열로 출력하시오.</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> str = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!(i % <span class="number">2</span>)) &#123;</span><br><span class="line">            str += i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(str);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="4">
+<li>for문을 사용하여 0부터 10미만의 정수 중에서 홀수만을 큰수부터 출력하시오.</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">10</span>; i &gt; <span class="number">0</span>; i--) &#123;</span><br><span class="line">    <span class="keyword">if</span> (i % <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="5">
+<li>while문을 사용하여 0 부터 10 미만의 정수 중에서 짝수만을 작은 수부터 출력하시오.</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (five &lt; <span class="number">10</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!(five % <span class="number">2</span>)) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(five);</span><br><span class="line">    &#125;</span><br><span class="line">    five++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="6">
+<li>while문을 사용하여 0 부터 10 미만의 정수 중에서 홀수만을 큰수부터 출력하시오.</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     <span class="keyword">var</span> six = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (six &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (six % <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(six);</span><br><span class="line">        &#125;</span><br><span class="line">        six--;</span><br><span class="line">    &#125;    </span><br><span class="line"> &#125;)();</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="7">
+<li>for 문을 사용하여 0부터 10미만의 정수의 합을 출력하시오.</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   <span class="keyword">var</span> seven = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">        seven += i;</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="built_in">console</span>.log(seven);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="8">
+<li>1부터 20 미만의 정수 중에서 2 또는 3의 배수가 아닌 수의 총합을 구하시오.</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> eight = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">20</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i % <span class="number">2</span> &amp;&amp; i % <span class="number">3</span>) &#123;</span><br><span class="line">            eight += i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="built_in">console</span>.log(eight);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="9">
+<li>1부터 20 미만의 정수 중에서 2 또는 3의 배수인 수의 총합을 구하시오.</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   <span class="keyword">var</span> nine = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">20</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!(i % <span class="number">2</span>) || !(i % <span class="number">3</span>)) &#123;</span><br><span class="line">            nine += i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="built_in">console</span>.log(nine);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="10">
+<li>두 개의 주사위를 던졌을 때, 눈의 합이 6이 되는 모든 경우의 수를 출력하시오.</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; <span class="number">6</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">let</span> numSet = [];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">6</span>; j &gt; <span class="number">0</span>; j--) &#123;</span><br><span class="line">        <span class="keyword">if</span> ((i + j) === <span class="number">6</span>) &#123;</span><br><span class="line">            numSet.push(i);</span><br><span class="line">            numSet.push(j);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(numSet);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="11">
+<li><p>삼각형 출력하기 - pattern 1</p>
+<p>다음을 참고하여 *(별)로 높이가 5인(var line = 5) 삼각형을 문자열로 완성하라.</p>
+<p>개행문자(‘\n’)를 사용하여 개행한다. 완성된 문자열의 마지막은 개행문자(‘\n’)로 끝나도 관계없다.</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> starlist = <span class="string">&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt;= <span class="number">5</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">1</span>; j &lt;= i; j++) &#123;</span><br><span class="line">            starlist += <span class="string">&#x27;*&#x27;</span>;</span><br><span class="line">            <span class="keyword">if</span> (j === i) &#123;</span><br><span class="line">                starlist += <span class="string">`\n`</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">console</span>.log(starlist);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="12">
+<li><p>삼각형 출력하기 - pattern 2</p>
+<p>다음을 참고하여 *(별)로 높이가 5인(var line = 5) 삼각형을 문자열로 완성하라.</p>
+<p>개행문자(‘\n’)를 사용하여 개행한다. 완성된 문자열의 마지막은 개행문자(‘\n’)로 끝나도 관계없다.</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> starlist = <span class="string">&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">5</span>; i &gt; <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">1</span>; j &lt;= <span class="number">6</span>; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (j + i &lt;= <span class="number">5</span>) &#123;</span><br><span class="line">                starlist += <span class="string">&#x27; &#x27;</span></span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (j === <span class="number">6</span>) &#123;</span><br><span class="line">                starlist += <span class="string">`\n`</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            starlist += <span class="string">&#x27;*&#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">console</span>.log(starlist);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="13">
+<li><p>삼각형 출력하기 - pattern 3</p>
+<p>다음을 참고하여 *(별)로 높이가 5인(var line = 5) 삼각형을 문자열로 완성하라.</p>
+<p>개행문자(‘\n’)를 사용하여 개행한다. 완성된 문자열의 마지막은 개행문자(‘\n’)로 끝나도 관계없다.</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> starlist = <span class="string">&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">5</span>; i &gt; <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">1</span>; j &lt;= i; j++) &#123;</span><br><span class="line">            starlist += <span class="string">&#x27;*&#x27;</span>;</span><br><span class="line">            <span class="keyword">if</span> (j === i) &#123;</span><br><span class="line">                starlist += <span class="string">`\n`</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(starlist);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="14">
+<li><p>삼각형 출력하기 - pattern 4</p>
+<p>다음을 참고하여 *(별)로 높이가 5인(var line = 5) 삼각형을 문자열로 완성하라.</p>
+<p>개행문자(‘\n’)를 사용하여 개행한다. 완성된 문자열의 마지막은 개행문자(‘\n’)로 끝나도 관계없다.</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> starlist = <span class="string">&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">1</span>; j &lt;= <span class="number">6</span>; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (j + i &lt; <span class="number">5</span>) &#123;</span><br><span class="line">                starlist += <span class="string">&#x27; &#x27;</span></span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (j === <span class="number">6</span>) &#123;</span><br><span class="line">                starlist += <span class="string">`\n`</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            starlist += <span class="string">&#x27;*&#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(starlist);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="15">
+<li>정삼각형 출력하기</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> starlist = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">var</span> middle = <span class="built_in">Math</span>.ceil(<span class="number">9</span> / <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">let</span> minNum = middle - i;</span><br><span class="line">        <span class="keyword">let</span> maxNum = middle + i;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt;= <span class="number">10</span>; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (j === minNum || (j &gt;= minNum &amp;&amp; j &lt;= maxNum)) &#123;</span><br><span class="line">                starlist += <span class="string">&#x27;*&#x27;</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (j === <span class="number">10</span>) &#123;</span><br><span class="line">                starlist += <span class="string">`\n`</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                starlist += <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">console</span>.log(starlist);</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="16">
+<li>역정삼각형 출력하기</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> starlist = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">var</span> middle = <span class="built_in">Math</span>.ceil(<span class="number">9</span> / <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">4</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">let</span> minNum = middle - i;</span><br><span class="line">        <span class="keyword">let</span> maxNum = middle + i;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt;= <span class="number">10</span>; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (j === minNum || (j &gt;= minNum &amp;&amp; j &lt;= maxNum)) &#123;</span><br><span class="line">                starlist += <span class="string">&#x27;*&#x27;</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (j === <span class="number">10</span>) &#123;</span><br><span class="line">                starlist += <span class="string">`\n`</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                starlist += <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(starlist);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://parksaneon.github.io/2020/08/28/execution-context/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Park facamp">
+      <meta itemprop="description" content="All Dev stories">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Park facamp's blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/28/execution-context/" class="post-title-link" itemprop="url">execution context</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-08-28 17:31:14 / Modified: 17:32:46" itemprop="dateCreated datePublished" datetime="2020-08-28T17:31:14+09:00">2020-08-28</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="실행-컨텍스트-execution-context"><a href="#실행-컨텍스트-execution-context" class="headerlink" title="실행 컨텍스트 ( execution context )"></a><strong>실행 컨텍스트</strong> ( execution context )</h1><p> 자바스크립트의 동작 원리를 담고 있는 핵심 개념으로 실행 컨텍스트를 바르게 이해하면 자바스크립트가 스코프를 기반으로 식별자와 식별자에 바인딩된 값(식별자 바인딩)을 관리하는 방식과 호이스팅이 발생하는 이유, 클로저의 동작 방식, 그리고 태스크 큐와 함께 동작하는 이벤트 핸들러와 비동기 처리의 동작 방식을 이해할 수 있다.</p>
+<h3 id="소스코드의-타입"><a href="#소스코드의-타입" class="headerlink" title="소스코드의 타입"></a>소스코드의 타입</h3><ul>
+<li><p>전역 코드(global code)</p>
+<p>전역 코드는 전역 변수를 관리하기 위해 최상위 스코프인 전역 스코프를 생성해야 한다. 그리고 var 키워드로 선언된 전역 변수와 함수 선언문으로 정의된 전역 함수를 전역 객체의 프로퍼티와 메서드로 바인딩하고 참조하기 위해 전역 객체와 연결되어야 한다. 이를 위해 전역 코드가 평가되면 전역 실행 컨텍스트가 생성된다.</p>
+</li>
+</ul>
+<ul>
+<li><p>함수 코드(function code)</p>
+<p>함수 코드는 지역 스코프를 생성하고 지역 변수, 매개변수, arguments 객체를 관리해야 한다. 그리고 생성한 지역 스코프를 전역 스코프에서 시작하는 스코프 체인의 일원으로 연결해야 한다. 이를 위해 함수 코드가 평가되면 함수 실행 컨텍스트가 생성된다.</p>
+</li>
+</ul>
+<ul>
+<li><p>eval 코드(eval code)</p>
+<p>strict mode(엄격 모드)에서 자신만의 독자적인 스코프를 생성한다. 이를 위해 eval 코드가 평가되면 eval 실행 컨텍스트가 생성된다.</p>
+</li>
+</ul>
+<ul>
+<li><p>모듈 코드(module code)</p>
+<p>모듈별로 독립적인 모듈 스코프를 생성한다. 이를 위해 모듈 코드가 평가되면 모듈 실행 컨텍스트가 생성된다.</p>
+</li>
+</ul>
+<h3 id="소스코드의-평가와-실행"><a href="#소스코드의-평가와-실행" class="headerlink" title="소스코드의 평가와 실행"></a>소스코드의 평가와 실행</h3><p>모든 코드는 실행에 앞서 평가 과정을 거치며 코드를 실행하기 위한 준비를 한다. 자바스크립트 엔진은 소스코드를 2개의 과정, 즉 <strong>소스코드의 평가</strong>와 <strong>소스코드의 실행</strong>으로 나누어 처리한다.</p>
+<ol>
+<li>소스코드 평가</li>
+</ol>
+<p>실행 컨텍스트를 생성하고 변수, 함수 등의 선언문 만을 먼저 실행하여 생성된 변수나 함수 식별자를 키로 실행 컨텍스트가 관리하는 스코프(렉시컬 환경의 환경 레코드)에 등록한다.</p>
+<ol start="2">
+<li><p>소스코드 실행</p>
+<p>소스코드의 평가 과정이 끝나면 비로소 선언문을 제외한 소스코드가 순차적으로 실행되기 시작한다. </p>
+<p>즉, <strong>런타임</strong>이 시작된다. 이때 소스코드 실행에 필요한 정보, 즉 변수나 함수의 참조를 실행 컨텍스트가 관리하는 스코프에서 검색해서 취득한다. 그리고 변수 값의 변경과 같은 소스코드의 실행 결과는 다시 실행 컨텍스트가 관리하는 스코프에 등록된다.</p>
+</li>
+</ol>
+<p>소스코드 평가가 끝난 후에야 비로소 실행이 된다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x;</span><br><span class="line">x = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<p>위의 예제에서 먼저 평가의 과정으로 변수 선언문 var x; 를 먼저 실행한다. 이때 생성된 변수 식별자 x는 실행 컨텍스트가 관리하는 스코프에 등록되고 undefined로 초기화된다.</p>
+<p>소스코드 평가 과정이 끝나면 비로소 소스코드 실행 과정이 시작된다. 변수 선언문 var x; 가 과정에서 이미 실행이 완료되었다. 따라서 소스코드 실행 과정에서는 변수 할당문만 실행된다.</p>
+<p>호이스팅으로 선언된 변수, 함수가 끌어올려 지고 선언된 변수에는 undefined로 초기화 등이 이뤄지는데 이를 평가라 하고 할당문 같이 실질적으로 실행되는 부분이 실행이라 보면 되겠다.</p>
+<h3 id="실행-컨텍스트의-역할"><a href="#실행-컨텍스트의-역할" class="headerlink" title="실행 컨텍스트의 역할"></a>실행 컨텍스트의 역할</h3><ol>
+<li><p>선언에 의해 생성된 모든 식별자(변수, 함수, 클래스 등)를 스코프를 구분하여 등록하고 상태 변화(식별자에 바인딩된 값의 변화)를 지속적으로 관리</p>
+</li>
+<li><p>스코프는 중첩 관계에 의해 스코프 체인을 형성</p>
+</li>
+<li><p>현재 실행 중인 코드의 실행 순서를 변경(예를 들어, 함수 호출에 의한 실행 순서 변경)</p>
+</li>
+</ol>
+<p><strong>모든 것을 관리하는 것이 바로 실행 컨텍스트</strong>다. 실행 컨텍스트(execution context)는 소스코드를 실행하는 데 필요한 환경을 제공하고 코드의 실행 결과를 실제로 관리하는 영역이다.</p>
+<p>실행 컨텍스트는 <strong>식별자(변수, 함수, 클래스 등의 이름)를 등록하고 관리하는 스코프</strong>와 <strong>코드 실행 순서 관리를 구현한 내부 매커니즘</strong>으로, 모든 코드는 실행 컨텍스트를 통해 실행되고 관리된다.</p>
+<p>식별자와 스코프는 실행 컨텍스트의 <strong>렉시컬 환경</strong>으로 관리하고 코드 실행 순서는 <strong>실행 컨텍스트 스택</strong>으로 관리한</p>
+<h3 id="실행-컨텍스트-스택"><a href="#실행-컨텍스트-스택" class="headerlink" title="실행 컨텍스트 스택"></a>실행 컨텍스트 스택</h3><p><strong>코드의 실행 순서를 관리한다.</strong></p>
+<p>자바스크립트 엔진은 먼저 전역 코드를 평가하여 전역 실행 컨텍스트를 생성한다. 그리고 함수가 호출되면 함수 코드를 평가하여 함수 실행 컨텍스트를 생성한다.</p>
+<p>이때 생성된 실행 컨텍스트는 스택 자료구조로 관리된다. 이를 **실행 컨텍스트 스택(execution context stack)**이라고 부른다. 스택 자료구조는 배열의 형태로 이뤄져있다.</p>
+<p>코드가 실행되는 시간의 흐름에 따라 실행 컨텍스트 스택에는 다음과 같이 실행 컨텍스트가 추가(push)되고 제거(pop)된다. </p>
+<p>push : 배열의 가장 마지막 쪽에 추가</p>
+<p>pop : 배열의 가장 마지막 쪽을 제거</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> x = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> y = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">bar</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> z = <span class="number">3</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(x + y + z);</span><br><span class="line">  &#125;</span><br><span class="line">  bar();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo(); <span class="comment">// 6</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://poiemaweb.com/assets/fs-images/23-5.png" alt="img"></p>
+<h3 id="렉시컬-환경"><a href="#렉시컬-환경" class="headerlink" title="렉시컬 환경"></a>렉시컬 환경</h3><p>렉시컬 환경(Lexical Environment)은 식별자와 식별자에 바인딩된 값, 그리고 상위 스코프에 대한 참조를 기록하는 자료구조로 실행 컨텍스트를 구성하는 컴포넌트로서  실행 컨텍스트 스택이 코드의 실행 순서를 관리한다면 렉시컬 환경은 <strong>스코프와 식별자를 관리한다</strong>.</p>
+<h3 id="실행-컨텍스트에-의한-순서"><a href="#실행-컨텍스트에-의한-순서" class="headerlink" title="실행 컨텍스트에 의한 순서"></a>실행 컨텍스트에 의한 순서</h3><p><strong>1. 전역 코드 평가</strong></p>
+<p>전역 코드를 실행하기에 앞서 먼저 <strong>전역 코드 평가 과정</strong>을 거치며 전역 코드를 실행하기 위한 준비를 한다. 소스코드 평가 과정에서는 <strong>선언문만 먼저 실행한다.</strong> 따라서 전역 코드의 변수 선언문과 함수 선언문이 먼저 실행되고, 그 결과 생성된 전역 변수와 전역 함수가 실행 컨텍스트가 관리하는 전역 스코프에 등록된다. 이때 var 키워드로 선언된 <strong>전역 변수와 함수 선언문으로 정의된 전역 함수는 전역 객체의 프로퍼티와 메서드</strong>가 된다.</p>
+<p><strong>2. 전역 코드 실행</strong></p>
+<p>전역 코드 평가 과정이 끝나면 <strong>런타임</strong>이 시작되어 전역 코드가 순차적으로 실행되기 시작한다. 이때 전역 변수에 값이 할당되고 함수가 호출된다. 함수가 호출되면 순차적으로 실행되던 전역 코드의 실행을 일시 중단하고 코드 실행 순서를 변경하여 함수 내부로 진입한다.</p>
+<p><strong>3. 함수 코드 평가</strong></p>
+<p>함수 호출에 의해 코드 실행 순서가 변경되어 함수 내부로 진입하면 함수 내부의 문들을 실행하기에 앞서 <strong>함수 코드 평가 과정</strong>을 거치며 함수 코드를 실행하기 위한 준비를 한다. 이때 매개변수와 <strong>지역 변수 선언문이 먼저 실행</strong>되고, 그 결과 생성된 매개변수와 지역 변수가 실행 컨텍스트가 관리하는 지역 스코프에 등록된다. 또한 함수 내부에서 지역 변수처럼 사용할 수 있는 arguments 객체가 생성되어 지역 스코프에 등록되고 this 바인딩도 결정된다.</p>
+<p><strong>4. 함수 코드 실행</strong></p>
+<p>함수 코드 평가 과정이 끝나면 <strong>런타임</strong>이 시작되어 함수 코드가 순차적으로 실행되기 시작한다. 이때 매개변수와 지역 변수에 값이 할당되고 console.log 메서드가 호출된다.</p>
+<p>전역 환경에서 먼저 선언문을 평가한 다음에 코드를 실행한다. 도중에 함수 호출문을 만나면 함수 내부로 실행순서가 이동하고 전역 환경의 순서는 잠시 멈춘다. 함수 내부에서 선언문을 먼저 평가한 후에 함수내의 코드가 실행되고 실행이 끝나면 다시 전역환경으로 넘어온다.</p>
+<h3 id="실행-컨텍스트와-블록-레벨-스코프"><a href="#실행-컨텍스트와-블록-레벨-스코프" class="headerlink" title="실행 컨텍스트와 블록 레벨 스코프"></a>실행 컨텍스트와 블록 레벨 스코프</h3><p>var 키워드로 선언한 변수는 오로지 함수의 코드 블록 만을 지역 스코프로 인정하는 함수 레벨 스코프를 따른다. </p>
+<p>하지만 let, const 키워드로 선언한 변수는 모든 코드 블록(함수, if 문, for 문, while 문, try/catch 문 등)을 지역 스코프로 인정하는 블록 레벨 스코프(block-level scope)를 따른다.</p>
+<p>그래서  코드 블록을 위한 새로운 렉시컬 환경을 생성한다.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -968,278 +1357,6 @@
 </ul>
 <p>위의 3가지 적용 방법 중 External 벙법이 가장 권고되는 사항이다.</p>
 <p>MDN - Mozila Developer Network</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://parksaneon.github.io/2020/08/11/HTML5-Markup/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Park facamp">
-      <meta itemprop="description" content="All Dev stories">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Park facamp's blog">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/11/HTML5-Markup/" class="post-title-link" itemprop="url">HTML5_Markup</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-08-11 17:19:18 / Modified: 17:23:00" itemprop="dateCreated datePublished" datetime="2020-08-11T17:19:18+09:00">2020-08-11</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="HTML5-Markup"><a href="#HTML5-Markup" class="headerlink" title="HTML5 Markup"></a>HTML5 Markup</h1><h2 id="attribute-html-vs-property-css"><a href="#attribute-html-vs-property-css" class="headerlink" title="attribute(html) vs property(css)"></a>attribute(html) vs property(css)</h2><p>attribute는 html 태그에 추가적으로 제공하는 정보</p>
-<p>ex) class, id, title, lang, data-*, href, src, area, link…</p>
-<p>property는 태그가 태생적으로 가지고 있으며 변경이 가능한 정보</p>
-<p>ex) font-size, color…</p>
-<h2 id="새로운-표준-HTML5"><a href="#새로운-표준-HTML5" class="headerlink" title="새로운 표준 HTML5"></a>새로운 표준 HTML5</h2><p>명확한 정보 구조 설계 및 구성을 위해 카테고리 정의 및 이를 그룹화 한것이 HTML5의 콘텐츠 모델</p>
-<h5 id="5대-브라우저-및-제작사"><a href="#5대-브라우저-및-제작사" class="headerlink" title="5대 브라우저 및 제작사"></a>5대 브라우저 및 제작사</h5><ul>
-<li>IE - MS</li>
-<li>Chrome - Google</li>
-<li>Safari - Apple</li>
-<li>FireFox - Mozila</li>
-<li>Opera - Opera 재단(비영리 기관)</li>
-</ul>
-<h2 id="아웃라인-알고리즘-Outline-Algorithm"><a href="#아웃라인-알고리즘-Outline-Algorithm" class="headerlink" title="아웃라인 알고리즘(Outline Algorithm)"></a>아웃라인 알고리즘(Outline Algorithm)</h2><p>HTML 에는 정보 구조를 명확히 할 수 있도록 아웃라인 알고리즘이 존재해 왔다.</p>
-<p>–&gt; 웹 페이지의 정보 구조를 판별할 수 있는 개념으로, 책의 목차와 비슷</p>
-<h2 id="오프라인-웹-구현을-위한-API"><a href="#오프라인-웹-구현을-위한-API" class="headerlink" title="오프라인 웹 구현을 위한 API"></a>오프라인 웹 구현을 위한 API</h2><ul>
-<li>Web Storage<ul>
-<li>브라우저에 데이터를 저장하기 위한 공간으로 쿠키와 비교했을 때 데이터가 서버로 전송되지 않고 크기 제한, 유효기간 등이 없다.</li>
-</ul>
-</li>
-<li>Application Cache<ul>
-<li>오프라인에서 사용하는 데 필요한 리소스 (HTML, CSS, JS, 이미지 등)를 클라이언트 쪽에 캐시하기 위한 기능</li>
-<li>갑작스럽게 네트워크 연결이 끊겨도 기존에 봤던 이미지, 내용 등을 볼 수 있는 이유는 캐시쪽에 리소스가 저장되어 있기 떄문</li>
-</ul>
-</li>
-</ul>
-<p>link 태그에서 rel 속성을 생략할 시 stylesheet 속성값이 자동적으로 들어간다.</p>
-<p>script 태그도 마찬가지로 type 속성 생략시 text/javascript 속성값이 자동으로 들어간다.</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://parksaneon.github.io/2020/08/11/My-second-blog/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Park facamp">
-      <meta itemprop="description" content="All Dev stories">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Park facamp's blog">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/11/My-second-blog/" class="post-title-link" itemprop="url">MY Second blog</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-08-11 16:59:08 / Modified: 17:07:25" itemprop="dateCreated datePublished" datetime="2020-08-11T16:59:08+09:00">2020-08-11</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="웹접근성과-웹표준"><a href="#웹접근성과-웹표준" class="headerlink" title="웹접근성과 웹표준"></a>웹접근성과 웹표준</h1><p>웹접근성 > 웹표준 : 웹접근성이 더 포괄적인 개념이다.</p>
-
-
-
-<h3 id="인터넷-서비스"><a href="#인터넷-서비스" class="headerlink" title="인터넷 서비스"></a>인터넷 서비스</h3><ul>
-  <li>Telnet : 원격 서버 접속</li>
-  <li>e-mail : </li>
-  <li>Usenet : 관심 그룹</li>
-  <li>FTP : File Transfer Protocall ( 파일 송.수신 )</li>
-  <li>IRC</li>
-  <li>Archie : 검색</li>
-  <li>Gopher : 검색</li>
-  <li>WWW : World Wide Web</li>
-</ul>
-
-
-<h3 id="Front-End"><a href="#Front-End" class="headerlink" title="Front-End"></a>Front-End</h3><ul>
-<li>Client</li>
-<li>Web Broser</li>
-<li>Presentation Layer</li>
-</ul>
-<h3 id="Back-End"><a href="#Back-End" class="headerlink" title="Back-End"></a>Back-End</h3><ul>
-<li>Server</li>
-<li>Database</li>
-<li>Application Layer</li>
-</ul>
-<p>Full Stack 보다는 한쪽분야에 더 우선순위를 두는 것이 바람직하다.</p>
-<h3 id="Front-end-목록"><a href="#Front-end-목록" class="headerlink" title="Front-end 목록"></a>Front-end 목록</h3><p>HTML5, CSS3, Javascript</p>
-<p>웹을 공부하려면 html과 css가 기본으로 깔린 상태에서 javascript 능력을 올리는 것이 좋은 방식이다.</p>
-<p>2가지를 고려하고 script 사용하는 것과 그렇지 않은 것에는 큰 차이가 존재하며 고려한다면 더 나은 방향의 작업 진행이 가능하다.</p>
-<h3 id="Web의-기술-설정값"><a href="#Web의-기술-설정값" class="headerlink" title="Web의 기술 설정값"></a>Web의 기술 설정값</h3><ul>
-<li><p>HTML5 - 건강한 신체</p>
-</li>
-<li><p>CSS3 - 근사한 스타일링 </p>
-</li>
-<li><p>Javascript - 스마트한 두뇌</p>
-</li>
-</ul>
-<h2 id="웹표준-Web-Standard"><a href="#웹표준-Web-Standard" class="headerlink" title="웹표준(Web Standard)"></a>웹표준(Web Standard)</h2><h5 id="관련-문서"><a href="#관련-문서" class="headerlink" title="관련 문서"></a>관련 문서</h5><p>World Wide Web Consortiums ( W3C ) </p>
-<p>: 웹 표준 공식 사이트 ( 웹 표준 기준 )</p>
-<p>제프리 젤드만의 웹표준 가이드( 도서 )</p>
-<h2 id="웹-접근성-Web-Accessibility"><a href="#웹-접근성-Web-Accessibility" class="headerlink" title="웹 접근성(Web Accessibility)"></a>웹 접근성(Web Accessibility)</h2><p>접근성이란 멀쩡한 사람이 이용할 한가지 수단이 아닌 다른 불편한 이들도 접근할 수 있는 수단을 제공하는 것</p>
-<h5 id="장애에-대한-이해"><a href="#장애에-대한-이해" class="headerlink" title="장애에 대한 이해"></a>장애에 대한 이해</h5><ul>
-<li>시각 장애 - 전맹, 저시력</li>
-<li>청각 장애</li>
-<li>지체 장애 - 절단 및 지체기능 장애</li>
-<li>뇌병변 장애</li>
-</ul>
-<p>장애인에게 필요한 것은 줄기세포가 아니라 혁신적인 정보기술(IT)</p>
-<h5 id="장애는"><a href="#장애는" class="headerlink" title="장애는"></a>장애는</h5><ul>
-<li>볼수 없는 것이 아니라 보는 방법이 다른 것</li>
-<li>걸을 수 없는 것이 아니라 걷는 방법이 다른 것</li>
-<li>말할 수 없는 것이 아니라 말하는 방법이 다른 것</li>
-</ul>
-<p>한가지 상황이 아니라 다양한 상황을 고려해야한다.</p>
-<h5 id="환경에-대한-이해"><a href="#환경에-대한-이해" class="headerlink" title="환경에 대한 이해"></a>환경에 대한 이해</h5><ul>
-<li>다양한 Platform(기기)</li>
-<li>Cross Browsing<ul>
-<li>chrome, opera, ie 등 다양한 브라우저</li>
-</ul>
-</li>
-<li>SEO(Search Engine Optimization) - 검색엔진<ul>
-<li>저사양 또는 저속회전</li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://parksaneon.github.io/2020/08/11/My-Brand-New-POST/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Park facamp">
-      <meta itemprop="description" content="All Dev stories">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Park facamp's blog">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/11/My-Brand-New-POST/" class="post-title-link" itemprop="url">My Brand New POST</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-08-11 15:49:46 / Modified: 15:52:09" itemprop="dateCreated datePublished" datetime="2020-08-11T15:49:46+09:00">2020-08-11</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Hi there!<br>Nice to meet you</p>
-<p>haha</p>
 
       
     </div>
